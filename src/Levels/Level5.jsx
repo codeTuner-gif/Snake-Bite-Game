@@ -35,7 +35,7 @@ const Level5 = ({ setCompletedLevels }) => {
     setCompletedLevels(completedLevels);
 
     // Automatically navigate to level 1
-    navigate("/level1");
+    navigate("/result5");
   };
   useEffect(() => {
     // Save the current level path to localStorage
@@ -219,51 +219,55 @@ const Level5 = ({ setCompletedLevels }) => {
   //   // Optional: Reset the selected cards here if necessary
   // };
 
+  // Function to select a card from the deck and remove it
+
   return (
-    <div className="">
+    <div className="p-6 flex flex-col items-center">
       <div className="flex items-center justify-between w-full">
-        {/* <h2 className="text-xl font-bold mx-auto mr-54">Choose card from deck</h2> */}
-        <h2 className="text-2xl font-bold text-blue-400 mx-auto mr-50">
+        <h2 className="text-2xl font-bold text-blue-400 mx-auto mr-50 mb-6">
           No sign of Envenomation
         </h2>
       </div>
-
-      <div className="w-full h-70 m-7 flex flex-col items-center ml-1">
-        <div
-          className="relative w-60 h-72 cursor-pointer "
-          onClick={showNextCard}
-        >
-          <div className="absolute inset-0 bg-blue-500 border border-gray-400 transform translate-y-12 translate-x-8"></div>
-          <div className="absolute inset-0 bg-blue-400 border border-gray-400 transform translate-y-9 translate-x-6"></div>
-          <div className="absolute inset-0 bg-blue-300 border border-gray-400 transform translate-y-6 translate-x-4"></div>
-          <div className="absolute inset-0 bg-blue-200 border border-gray-400 transform translate-y-3 translate-x-2"></div>
-          <div className="absolute inset-0 bg-blue-100 border border-gray-400 flex items-center justify-center">
-            <p className="text-center text-xl">{deck[deckIndex]?.text}</p>
+  
+      <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-x-4 gap-y-4 mb-20 items-center mx-auto">
+        {deck.map((card) => (
+          <div
+            key={card.id}
+            className="border w-48 h-32 border-blue-500 p-4 bg-gray-100 rounded-lg text-center cursor-pointer hover:bg-gray-200"
+            onClick={() => {
+              if (!selectedCards1.text) {
+                selectCard(card, setSelectedCards1);
+              } else if (!selectedCards2.text) {
+                selectCard(card, setSelectedCards2);
+              } else {
+                console.log("Both selections are filled.");
+              }
+            }}
+          >
+            <p>{card.text}</p>
           </div>
+        ))}
+      </div>
+  
+      {/* Selected Boxes */}
+      <div className="text-xl w-full h-30">
+        <div>
+          <h2 className="text-center text-lg font-bold">
+            Select Correct option
+          </h2>
         </div>
-
-        <div className="text-xl w-full h-30">
-          <div>
-            <h2 className="text-center text-lg font-bold mt-14">
-              Select Correct option
-            </h2>
-          </div>
-
-          <div className="flex flex-wrap justify-center gap-8 mt-4">
+  
+        <div className="flex flex-wrap justify-center gap-8 mt-4">
+          {[selectedCards1, selectedCards2].map((card, idx) => (
             <div
+              key={idx}
               className="border-2 border-blue-400 w-60 h-32 flex items-center justify-center bg-gray-100 rounded-lg shadow-md text-gray-700 transition-transform transform hover:scale-105"
-              onClick={() => selectCard(deck[deckIndex], setSelectedCards1)}
             >
-              <p className="text-md text-center">{selectedCards1.text}</p>
+              <p className="text-md text-center">{card.text}</p>
             </div>
-            <div
-              className="border-2 border-blue-400 w-60 h-32 flex items-center justify-center bg-gray-100 rounded-lg shadow-md text-gray-700 transition-transform transform hover:scale-105"
-              onClick={() => selectCard(deck[deckIndex], setSelectedCards2)}
-            >
-              <p className="text-md text-center">{selectedCards2.text}</p>
-            </div>
-          </div>
+          ))}
         </div>
+      </div>
         {/* <div className="flex w-full mt-10">
           <h2 className="text-xl text-blue-600 font-bold">
             Time Remaining: {countdown} seconds
@@ -313,7 +317,6 @@ const Level5 = ({ setCompletedLevels }) => {
           </div>
         )}
       </div>
-    </div>
   );
 };
 

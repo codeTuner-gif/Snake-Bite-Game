@@ -40,7 +40,7 @@ const Level11 = ({ setCompletedLevels }) => {
     array.push(selectedCards3.text);
 
     console.log(array);
-    localStorage.setItem("level11Result", JSON.stringify(array));
+    localStorage.setItem( "origin", "level11", "level11Result", JSON.stringify(array));
     setCompletedLevels(completedLevels);
 
     // Navigate to level 11
@@ -205,7 +205,17 @@ const Level11 = ({ setCompletedLevels }) => {
   // Function to select a card from the deck
   const selectCard = (card, boxSetter) => {
     if (!card || !card.text) return;
-    boxSetter(card); // Set the selected card in the respective box
+    // Set the selected card in the respective empty box
+    if (!selectedCards1.text) {
+      setSelectedCards1(card);
+    } else if (!selectedCards2.text) {
+      setSelectedCards2(card);
+    } else if (!selectedCards3.text) {
+      setSelectedCards3(card);
+    } else {
+      console.log("All selections are filled.");
+      return;
+    }
 
     // Remove selected card from deck and show the next card
     const newDeck = deck.filter((c) => c.id !== card.id);
@@ -247,7 +257,7 @@ const Level11 = ({ setCompletedLevels }) => {
     if (isCorrect) {
       console.log("correct");
       setShowSuccessPopup(true);
-      localStorage.setItem("level6Result", JSON.stringify(selectedCards));
+      localStorage.setItem("level11Result", JSON.stringify(selectedCards));
     } else {
       console.log("incorrect");
       setShowWrongPopup(true); // Show wrong popup
@@ -290,57 +300,47 @@ const Level11 = ({ setCompletedLevels }) => {
   // };
 
   return (
-    <div className="">
+    <div className="p-6 flex flex-col items-center">
       <div className="flex items-center justify-between w-full">
         {/* <h2 className="text-xl font-bold mx-auto mr-54">Choose card from deck</h2> */}
-        <h2 className="text-2xl font-bold text-blue-400 mx-auto mr-50">
+        <h2 className="text-2xl font-bold text-blue-400 mx-auto mr-50 mb-6">
           Clotted:
         </h2>
       </div>
 
-      <div className="w-full h-70 m-7 flex flex-col items-center ml-1">
-        <div
-          className="relative w-60 h-72 cursor-pointer "
-          onClick={showNextCard}
-        >
-          <div className="absolute inset-0 bg-blue-500 border border-gray-400 transform translate-y-12 translate-x-8"></div>
-          <div className="absolute inset-0 bg-blue-400 border border-gray-400 transform translate-y-9 translate-x-6"></div>
-          <div className="absolute inset-0 bg-blue-300 border border-gray-400 transform translate-y-6 translate-x-4"></div>
-          <div className="absolute inset-0 bg-blue-200 border border-gray-400 transform translate-y-3 translate-x-2"></div>
-          <div className="absolute inset-0 bg-blue-100 border border-gray-400 flex items-center justify-center">
-            <p className="text-center text-xl">{deck[deckIndex]?.text}</p>
+      {/* Deck Display */}
+      <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-4 gap-x-4 gap-y-4 mb-20 items-center mx-auto">
+        {deck.map((card) => (
+          <div
+            key={card.id}
+            className="border w-48 h-32 border-blue-500 p-4 bg-gray-100 rounded-lg text-center cursor-pointer hover:bg-gray-200"
+            onClick={() => selectCard(card)} // Use selectCard to handle selection and removal
+          >
+            <p>{card.text}</p>
           </div>
+        ))}
+      </div>
+
+      {/* Selected Boxes */}
+      <div className="text-xl w-full h-30">
+        <div>
+          <h2 className="text-center text-lg font-bold">
+            Select Correct option
+          </h2>
         </div>
 
-        <div className="text-xl w-full h-30">
-          <div>
-            <h2 className="text-center text-lg font-bold mt-14">
-              Select Correct Option
-            </h2>
-          </div>
-
-          <div className="flex flex-wrap justify-center gap-8 mt-4">
+        <div className="flex flex-wrap justify-center gap-8 mt-4">
+          {[selectedCards1, selectedCards2, selectedCards3].map((card, idx) => (
             <div
+              key={idx}
               className="border-2 border-blue-400 w-60 h-32 flex items-center justify-center bg-gray-100 rounded-lg shadow-md text-gray-700 transition-transform transform hover:scale-105"
-              onClick={() => selectCard(deck[deckIndex], setSelectedCards1)}
             >
-              <p className="text-md text-center">{selectedCards1.text}</p>
+              <p className="text-md text-center">{card.text}</p>
             </div>
-            <div
-              className="border-2 border-blue-400 w-60 h-32 flex items-center justify-center bg-gray-100 rounded-lg shadow-md text-gray-700 transition-transform transform hover:scale-105"
-              onClick={() => selectCard(deck[deckIndex], setSelectedCards2)}
-            >
-              <p className="text-md text-center">{selectedCards2.text}</p>
-            </div>
-
-            <div
-              className="border-2 border-blue-400 w-60 h-32 flex items-center justify-center bg-gray-100 rounded-lg shadow-md text-gray-700 transition-transform transform hover:scale-105"
-              onClick={() => selectCard(deck[deckIndex], setSelectedCards3)}
-            >
-              <p className="text-md text-center">{selectedCards3.text}</p>
-            </div>
-          </div>
+          ))}
         </div>
+      </div>
+
         {/* <div className="flex w-full mt-10">
           <h2 className="text-xl text-blue-600 font-bold">
             Time Remaining: {countdown} seconds
@@ -398,7 +398,6 @@ const Level11 = ({ setCompletedLevels }) => {
           </div>
         )}
       </div>
-    </div>
   );
 };
 

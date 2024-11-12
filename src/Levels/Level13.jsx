@@ -1,7 +1,7 @@
 // PNIa(13) -> Submit
 
-import React, { useState, useEffect } from 'react';
-import CustomAlert from './CustomAlert'; // Importing the CustomAlert component
+import React, { useState, useEffect } from "react";
+import CustomAlert from "./CustomAlert"; // Importing the CustomAlert component
 import { useLocation, useNavigate } from "react-router-dom";
 
 const Level13 = ({ setCompletedLevels }) => {
@@ -15,41 +15,65 @@ const Level13 = ({ setCompletedLevels }) => {
 
   const handleCompleteLevel13 = () => {
     // Mark level 10 as completed
-    const completedLevels = { level1: true, level2: true, level3: true, level4: true, level5: true, level6:true, level7: true, level8:true, level9:true, level10:true, level11:true, level12:true, level13:true, level14:false };
-    localStorage.setItem('completedLevels', JSON.stringify(completedLevels));
-    
+    const completedLevels = {
+      level1: true,
+      level2: true,
+      level3: true,
+      level4: true,
+      level5: true,
+      level6: true,
+      level7: true,
+      level8: true,
+      level9: true,
+      level10: true,
+      level11: true,
+      level12: true,
+      level13: true,
+      level14: true,
+    };
+    localStorage.setItem("completedLevels", JSON.stringify(completedLevels));
+
     const array = [];
-    array.push( selectedCards.text);
+    array.push(selectedCards.text);
     console.log(array);
     localStorage.setItem("level13Result", JSON.stringify(array));
     setCompletedLevels(completedLevels);
 
-    // Navigate to level 1
-    navigate("/level1");
+    // Navigate to FinalResult13 based on path condition
+    // Navigate to FinalResult13 based on path condition
+    const isPathB =
+      localStorage.getItem("level10Result") &&
+      localStorage.getItem("level14Result");
+
+    if (isPathB) {
+      navigate("/result13", { state: { isPathB: true } });
+    } else {
+      navigate("/result13", { state: { isPathB: false } });
+    }
   };
   useEffect(() => {
     // Save the current level path to localStorage
-    localStorage.setItem('currentLevel', location.pathname);
+    localStorage.setItem("currentLevel", location.pathname);
 
     // Retrieve current level from localStorage on reload
-    const savedLevel = localStorage.getItem('currentLevel');
+    const savedLevel = localStorage.getItem("currentLevel");
     if (savedLevel && savedLevel !== location.pathname) {
       navigate(savedLevel); // Navigate to the saved level if it's different
     }
   }, [location, navigate]);
 
   const initialDeck = [
-    { id: 1, text: 'Discharge only when no neuro-deficit present' },
-    { id: 2, text: 'Discharge after 6 hours' },
-    { id: 3, text: 'Discharge after 24 hours irrespective of improvement' },
-    { id: 4, text: 'Transfer to referral hospital' }
+    { id: 1, text: "Discharge only when no neuro-deficit present" },
+    { id: 2, text: "Discharge after 6 hours" },
+    { id: 3, text: "Discharge after 24 hours irrespective of improvement" },
+    { id: 4, text: "Transfer to referral hospital" },
   ];
 
   // Correct sequence of cards
   const correctSequence = [
-    { id: 1, text: 'Discharge only when no neuro-deficit present' }
+    { id: 1, text: "Discharge only when no neuro-deficit present" },
   ];
-  
+
   // Shuffle the deck when the component mounts
   // useEffect(() => {
   //   const shuffledDeck = shuffle(Array.from(initialDeck.entries()));
@@ -61,9 +85,7 @@ const Level13 = ({ setCompletedLevels }) => {
   }, []);
 
   useEffect(() => {
-    if (
-      selectedCards.text !== undefined 
-    ) {
+    if (selectedCards.text !== undefined) {
       res();
     }
   }, [selectedCards]);
@@ -73,12 +95,12 @@ const Level13 = ({ setCompletedLevels }) => {
   //     resetGame(); // Reload the page when countdown reaches zero
   //     return;
   //   }
-    
+
   //   // Set the interval to decrease countdown every second (1000 ms)
   //   const timer = setInterval(() => {
   //     setCountdown((prev) => prev - 1);
   //   }, 1000);
-  
+
   //   // Cleanup the interval on component unmount
   //   return () => clearInterval(timer);
   // }, [countdown]);
@@ -117,7 +139,7 @@ const Level13 = ({ setCompletedLevels }) => {
   //   console.log(selectedCards);
 
   //   if (
-  //     selectedCards.id === correctSequence[0].id 
+  //     selectedCards.id === correctSequence[0].id
   //   ) {
   //     // console.log('correct');
   //     setShowSuccessPopup(true);
@@ -205,7 +227,7 @@ const Level13 = ({ setCompletedLevels }) => {
     // Reset the deck
     setDeck(initialDeck);
     setDeckIndex(0); // Show the first card from the deck
-    
+
     // Reshuffle the deck
     // const reshuffledDeck = shuffle(Array.from(initialDeck.entries()));
     // setDeck(reshuffledDeck);
@@ -217,84 +239,77 @@ const Level13 = ({ setCompletedLevels }) => {
   // };
 
   return (
-    <div className="">
+    <div className="p-6 flex flex-col items-center">
       <div className="flex items-center justify-between w-full">
         {/* <h2 className="text-xl font-bold mx-auto mr-54">Choose card from deck</h2> */}
-        <h2 className="text-2xl font-bold text-blue-400 mx-auto mr-50">
-        Improving:
-            </h2>
-        
+        <h2 className="text-2xl font-bold text-blue-400 mx-auto mr-50 mb-6">
+          Improving:
+        </h2>
       </div>
-  
-      <div className="w-full h-70 m-7 flex flex-col items-center ml-1">
-        <div className="relative w-60 h-72 cursor-pointer " onClick={showNextCard}>
-          <div className="absolute inset-0 bg-blue-500 border border-gray-400 transform translate-y-12 translate-x-8"></div>
-          <div className="absolute inset-0 bg-blue-400 border border-gray-400 transform translate-y-9 translate-x-6"></div>
-          <div className="absolute inset-0 bg-blue-300 border border-gray-400 transform translate-y-6 translate-x-4"></div>
-          <div className="absolute inset-0 bg-blue-200 border border-gray-400 transform translate-y-3 translate-x-2"></div>
-          <div className="absolute inset-0 bg-blue-100 border border-gray-400 flex items-center justify-center">
-            <p className="text-center text-xl">{deck[deckIndex]?.text}</p>
+
+      {/* Display all deck cards in a grid format */}
+      <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-4 gap-x-4 gap-y-4 mb-20 items-center mx-auto">
+        {deck.map((card) => (
+          <div
+            key={card.id}
+            className="border w-48 h-32 border-blue-500 p-4 bg-gray-100 rounded-lg text-center cursor-pointer hover:bg-gray-200"
+            onClick={() => selectCard(card, setSelectedCards)}
+          >
+            <p>{card.text}</p>
           </div>
-        </div>
-  
-        <div className="text-xl w-full h-30">
-          <div>
-            <h2 className="text-center text-lg font-bold mt-14">
-              Select Correct Option
-            </h2>
-          </div>
-  
-          <div className="flex flex-wrap justify-center gap-8 mt-4">
-            <div
-              className="border-2 border-blue-400 w-60 h-32 flex items-center justify-center bg-gray-100 rounded-lg shadow-md text-gray-700 transition-transform transform hover:scale-105"
-              onClick={() => selectCard(deck[deckIndex], setSelectedCards)}
-            >
-              <p className="text-md text-center">{selectedCards.text}</p>
-            </div>
-          </div>
-          
-        </div>
-        {/* <div className="flex w-full mt-10">
+        ))}
+      </div>
+
+      {/* Selected card box */}
+      <div>
+        <h2 className="text-center text-lg font-bold mt-14">
+          Select the Correct Option
+        </h2>
+      </div>
+      <div className="mt-8 w-60 h-32 border-2 border-blue-500 flex items-center justify-center bg-gray-100 rounded-lg shadow-md text-gray-700">
+        <p className="text-md text-center">{selectedCards.text}</p>
+      </div>
+
+      {/* <div className="flex w-full mt-10">
           <h2 className="text-xl text-blue-600 font-bold">Time Remaining: {countdown} seconds</h2>
         </div> */}
 
-        {/* Success Popup for Correct Sequence */}
-        {showSuccessPopup && (
-          <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
-            <div className="bg-white rounded-lg shadow-lg p-6 w-full max-w-md text-center">
-              <h2 className="text-2xl font-bold text-green-600 mb-4">Correct!</h2>
-              <h2 className="text-xl mb-4">
-                To start the game again click on the button below
-              </h2>
-              <button
-                className="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600"
-                onClick={handleSuccessClose}
-              >
-                Submit
-              </button>
-            </div>
+      {/* Success Popup for Correct Sequence */}
+      {showSuccessPopup && (
+        <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
+          <div className="bg-white rounded-lg shadow-lg p-6 w-full max-w-md text-center">
+            <h2 className="text-2xl font-bold text-green-600 mb-4">Correct!</h2>
+            <h2 className="text-xl mb-4">
+              To start the game again click on the button below
+            </h2>
+            <button
+              className="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600"
+              onClick={handleSuccessClose}
+            >
+              Submit
+            </button>
           </div>
-        )}
+        </div>
+      )}
 
-        {/* Wrong Popup for Incorrect Sequence */}
-        {showWrongPopup && (
-          <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
-            <div className="bg-white rounded-lg shadow-lg p-6 w-full max-w-md text-center">
-              <h2 className="text-2xl font-bold text-red-400 mb-4">Incorrect!</h2>
-              <p className="mb-6">You have selected the wrong sequence.</p>
-              <button
-                className="bg-red-400 text-white px-4 py-2 rounded-md"
-                onClick={() => {
-                  setShowWrongPopup(false);
-                  resetGame();
-                }}
-              >
-                Try Again
-              </button>
-            </div>
+      {/* Wrong Popup for Incorrect Sequence */}
+      {showWrongPopup && (
+        <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
+          <div className="bg-white rounded-lg shadow-lg p-6 w-full max-w-md text-center">
+            <h2 className="text-2xl font-bold text-red-400 mb-4">Incorrect!</h2>
+            <p className="mb-6">You have selected the wrong sequence.</p>
+            <button
+              className="bg-red-400 text-white px-4 py-2 rounded-md"
+              onClick={() => {
+                setShowWrongPopup(false);
+                resetGame();
+              }}
+            >
+              Try Again
+            </button>
           </div>
-        )}
-      </div>
+        </div>
+      )}
     </div>
   );
 };
