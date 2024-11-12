@@ -282,7 +282,7 @@ const Level1 = ({ setCompletedLevels }) => {
       {/* Selected Boxes */}
       <div className="text-xl w-full h-30">
         <div>
-          <h2 className="text-center text-lg font-bold mt-14">
+          <h2 className="text-center text-lg font-bold">
             Select Correct option
           </h2>
         </div>

@@ -50,10 +50,10 @@ const Level6 = ({ setCompletedLevels }) => {
   };
   useEffect(() => {
     // Save the current level path to localStorage
-    localStorage.setItem('currentLevel', location.pathname);
+    localStorage.setItem("currentLevel", location.pathname);
 
     // Retrieve current level from localStorage on reload
-    const savedLevel = localStorage.getItem('currentLevel');
+    const savedLevel = localStorage.getItem("currentLevel");
     if (savedLevel && savedLevel !== location.pathname) {
       navigate(savedLevel); // Navigate to the saved level if it's different
     }
@@ -172,30 +172,41 @@ const Level6 = ({ setCompletedLevels }) => {
   // };
 
   // Function to select a card from the deck
-const selectCard = (card, boxSetter) => {
-  if (!card || !card.text) return;
-  boxSetter(card); // Set the selected card in the respective box
+  const selectCard = (card) => {
+    if (!card || !card.text) return;
 
-  // Remove selected card from deck and show the next card
-  const newDeck = deck.filter((c) => c.id !== card.id);
-  setDeck(newDeck);
-  if (newDeck.length > 0) {
-    setDeckIndex(0); // Show the first card from the remaining deck
-  } else {
-    setDeckIndex(null); // No more cards left in the deck
-  }
-};
+    // Set the selected card in the respective empty box
+    if (!selectedCards1.text) {
+      setSelectedCards1(card);
+    } else if (!selectedCards2.text) {
+      setSelectedCards2(card);
+    } else if (!selectedCards3.text) {
+      setSelectedCards3(card);
+    } else {
+      console.log("All selections are filled.");
+      return;
+    }
 
-// Function to move to the next card in the deck
-const showNextCard = () => {
-  if (deckIndex === null) {
-    setDeckIndex(0); // Show the first card on the first click
-  } else if (deckIndex < deck.length - 1) {
-    setDeckIndex(deckIndex + 1); // Show the next card
-  } else {
-    setDeckIndex(0); // Reset to the first card when the deck ends
-  }
-};
+    // Remove selected card from deck and show the next card
+    const newDeck = deck.filter((c) => c.id !== card.id);
+    setDeck(newDeck);
+    if (newDeck.length > 0) {
+      setDeckIndex(0); // Show the first card from the remaining deck
+    } else {
+      setDeckIndex(null); // No more cards left in the deck
+    }
+  };
+
+  // Function to move to the next card in the deck
+  const showNextCard = () => {
+    if (deckIndex === null) {
+      setDeckIndex(0); // Show the first card on the first click
+    } else if (deckIndex < deck.length - 1) {
+      setDeckIndex(deckIndex + 1); // Show the next card
+    } else {
+      setDeckIndex(0); // Reset to the first card when the deck ends
+    }
+  };
 
   // const res = () => {
   //   // console.log('sdsds');
@@ -228,21 +239,20 @@ const showNextCard = () => {
       selectedCards2.text,
       selectedCards3.text,
     ];
-  
+
     // Create an array of correct cards
     const correctCards = correctSequence.map((card) => card.text);
-  
+
     // Check if all selected cards exist in the correct sequence (regardless of order)
     const isCorrect = selectedCards.every((selectedCard) =>
       correctCards.includes(selectedCard)
     );
-  
+
     if (isCorrect) {
       console.log("correct");
-      setShowSuccessPopup(true); 
+      setShowSuccessPopup(true);
       localStorage.setItem("level6Result", JSON.stringify(selectedCards));
-    } 
-    else {
+    } else {
       console.log("incorrect");
       setShowWrongPopup(true); // Show wrong popup
     }
@@ -291,7 +301,7 @@ const showNextCard = () => {
   };
 
   return (
-    <div className="">
+    <div className="p-6 flex flex-col items-center">
       <div className="flex items-center justify-between w-full">
         {/* <h2 className="text-xl font-bold mx-auto mr-54">Choose card from deck</h2> */}
         <h2 className="text-2xl font-bold text-blue-400 mx-auto mr-50">
@@ -299,102 +309,87 @@ const showNextCard = () => {
         </h2>
       </div>
 
-      <div className="w-full h-70 m-7 flex flex-col items-center ml-1">
-        <div
-          className="relative w-60 h-72 cursor-pointer "
-          onClick={showNextCard}
-        >
-          <div className="absolute inset-0 bg-blue-500 border border-gray-400 transform translate-y-12 translate-x-8"></div>
-          <div className="absolute inset-0 bg-blue-400 border border-gray-400 transform translate-y-9 translate-x-6"></div>
-          <div className="absolute inset-0 bg-blue-300 border border-gray-400 transform translate-y-6 translate-x-4"></div>
-          <div className="absolute inset-0 bg-blue-200 border border-gray-400 transform translate-y-3 translate-x-2"></div>
-          <div className="absolute inset-0 bg-blue-100 border border-gray-400 flex items-center justify-center">
-            <p className="text-center text-xl">{deck[deckIndex]?.text}</p>
+      {/* Deck Display */}
+      <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-x-4 gap-y-4 mb-20 items-center mx-auto">
+        {deck.map((card) => (
+          <div
+            key={card.id}
+            className="border w-48 h-32 border-blue-500 p-4 bg-gray-100 rounded-lg text-center cursor-pointer hover:bg-gray-200"
+            onClick={() => selectCard(card)} // Use selectCard to handle selection and removal
+          >
+            <p>{card.text}</p>
           </div>
+        ))}
+      </div>
+
+      {/* Selected Boxes */}
+      <div className="text-xl w-full h-30">
+        <div>
+          <h2 className="text-center text-lg font-bold">
+            Select Correct option
+          </h2>
         </div>
 
-        <div className="text-xl w-full h-30">
-          <div>
-            <h2 className="text-center text-lg font-bold mt-14">
-              Select Correct option
-            </h2>
-          </div>
-
-          <div className="flex flex-wrap justify-center gap-8 mt-4">
+        <div className="flex flex-wrap justify-center gap-8 mt-4">
+          {[selectedCards1, selectedCards2, selectedCards3].map((card, idx) => (
             <div
+              key={idx}
               className="border-2 border-blue-400 w-60 h-32 flex items-center justify-center bg-gray-100 rounded-lg shadow-md text-gray-700 transition-transform transform hover:scale-105"
-              onClick={() => selectCard(deck[deckIndex], setSelectedCards1)}
             >
-              <p className="text-md text-center">{selectedCards1.text}</p>
+              <p className="text-md text-center">{card.text}</p>
             </div>
-            <div
-              className="border-2 border-blue-400 w-60 h-32 flex items-center justify-center bg-gray-100 rounded-lg shadow-md text-gray-700 transition-transform transform hover:scale-105"
-              onClick={() => selectCard(deck[deckIndex], setSelectedCards2)}
-            >
-              <p className="text-md text-center">{selectedCards2.text}</p>
-            </div>
-
-            <div
-              className="border-2 border-blue-400 w-60 h-32 flex items-center justify-center bg-gray-100 rounded-lg shadow-md text-gray-700 transition-transform transform hover:scale-105"
-              onClick={() => selectCard(deck[deckIndex], setSelectedCards3)}
-            >
-              <p className="text-md text-center">{selectedCards3.text}</p>
-            </div>
-          </div>
+          ))}
         </div>
-        {/* <div className="flex w-full mt-10">
+      </div>
+
+      {/* <div className="flex w-full mt-10">
           <h2 className="text-xl text-blue-600 font-bold">
             Time Remaining: {countdown} seconds
           </h2>
         </div> */}
 
-        {/* Success Popup for Correct Sequence */}
-        {showSuccessPopup && (
-          <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
-            <div className="bg-white rounded-lg shadow-lg p-6 w-full max-w-md text-center">
-              <h2 className="text-2xl font-bold text-green-600 mb-4">
-                Correct!
-              </h2>
-              {codeSelection() ? (
-                <button
-                  onClick={() => handleCompleteLevel6()}
-                  className="mt-4 bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600"
-                >
-                  Hint: Neurological sign
-                </button>
-              ) : (
-                <button
-                  onClick={() => handleCompleteLevel6()}
-                  className="mt-4 bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600"
-                >
-                  Hint: Sign of Bleeding
-                </button>
-              )}
-            </div>
-          </div>
-        )}
-
-        {/* Wrong Popup for Incorrect Sequence */}
-        {showWrongPopup && (
-          <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
-            <div className="bg-white rounded-lg shadow-lg p-6 w-full max-w-md text-center">
-              <h2 className="text-2xl font-bold text-red-400 mb-4">
-                Incorrect!
-              </h2>
-              <p className="mb-6">You have selected the wrong sequence.</p>
+      {/* Success Popup for Correct Sequence */}
+      {showSuccessPopup && (
+        <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
+          <div className="bg-white rounded-lg shadow-lg p-6 w-full max-w-md text-center">
+            <h2 className="text-2xl font-bold text-green-600 mb-4">Correct!</h2>
+            {codeSelection() ? (
               <button
-                className="bg-red-400 text-white px-4 py-2 rounded-md"
-                onClick={() => {
-                  setShowWrongPopup(false);
-                  resetGame();
-                }}
+                onClick={() => handleCompleteLevel6()}
+                className="mt-4 bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600"
               >
-                Try Again
+                Hint: Neurological sign
               </button>
-            </div>
+            ) : (
+              <button
+                onClick={() => handleCompleteLevel6()}
+                className="mt-4 bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600"
+              >
+                Hint: Sign of Bleeding
+              </button>
+            )}
           </div>
-        )}
-      </div>
+        </div>
+      )}
+
+      {/* Wrong Popup for Incorrect Sequence */}
+      {showWrongPopup && (
+        <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
+          <div className="bg-white rounded-lg shadow-lg p-6 w-full max-w-md text-center">
+            <h2 className="text-2xl font-bold text-red-400 mb-4">Incorrect!</h2>
+            <p className="mb-6">You have selected the wrong sequence.</p>
+            <button
+              className="bg-red-400 text-white px-4 py-2 rounded-md"
+              onClick={() => {
+                setShowWrongPopup(false);
+                resetGame();
+              }}
+            >
+              Try Again
+            </button>
+          </div>
+        </div>
+      )}
     </div>
   );
 };

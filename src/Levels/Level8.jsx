@@ -33,7 +33,7 @@ const Level8 = ({ setCompletedLevels }) => {
     array.push(selectedCards.text);
 
     console.log(array);
-    localStorage.setItem("level8Result", JSON.stringify(array));
+    localStorage.setItem("origin", "level8", "level8Result", JSON.stringify(array));
     setCompletedLevels(completedLevels);
 
     // Navigate to level 11
@@ -240,44 +240,37 @@ const showNextCard = () => {
   // };
 
   return (
-    <div className="">
+    <div className="p-6 flex flex-col items-center">
       <div className="flex items-center justify-between w-full">
         {/* <h2 className="text-xl font-bold mx-auto mr-54">Choose card from deck</h2> */}
-        <h2 className="text-2xl font-bold text-blue-400 mx-auto mr-50">
-          Signs of bleeding:
+        <h2 className="text-2xl font-bold text-blue-400 mx-auto mr-50 mb-6">
+          Signs of bleeding(Haemotoxic Envenomation):
         </h2>
       </div>
 
-      <div className="w-full h-70 m-7 flex flex-col items-center ml-1">
-        <div
-          className="relative w-60 h-72 cursor-pointer "
-          onClick={showNextCard}
-        >
-          <div className="absolute inset-0 bg-blue-500 border border-gray-400 transform translate-y-12 translate-x-8"></div>
-          <div className="absolute inset-0 bg-blue-400 border border-gray-400 transform translate-y-9 translate-x-6"></div>
-          <div className="absolute inset-0 bg-blue-300 border border-gray-400 transform translate-y-6 translate-x-4"></div>
-          <div className="absolute inset-0 bg-blue-200 border border-gray-400 transform translate-y-3 translate-x-2"></div>
-          <div className="absolute inset-0 bg-blue-100 border border-gray-400 flex items-center justify-center">
-            <p className="text-center text-xl">{deck[deckIndex]?.text}</p>
-          </div>
-        </div>
-
-        <div className="text-xl w-full h-30">
-          <div>
-            <h2 className="text-center text-lg font-bold mt-14">
-              Select Correct option
-            </h2>
-          </div>
-
-          <div className="flex flex-wrap justify-center gap-8 mt-4">
+      {/* Display all deck cards in a grid format */}
+      <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-4 gap-x-4 gap-y-4 mb-20 items-center mx-auto ">
+          {deck.map((card) => (
             <div
-              className="border-2 border-blue-400 w-60 h-32 flex items-center justify-center bg-gray-100 rounded-lg shadow-md text-gray-700 transition-transform transform hover:scale-105"
-              onClick={() => selectCard(deck[deckIndex], setSelectedCards)}
+              key={card.id}
+              className="border w-48 h-32 border-blue-500 p-4 bg-gray-100 rounded-lg text-center cursor-pointer hover:bg-gray-200"
+              onClick={() => selectCard(card, setSelectedCards)}
             >
-              <p className="text-md text-center">{selectedCards.text}</p>
+              <p>{card.text}</p>
             </div>
-          </div>
+          ))}
         </div>
+
+
+      {/* Selected card box */}
+      <div>
+          <h2 className="text-center text-lg font-bold mt-14">
+            Select the Correct Option
+          </h2>
+        </div>
+      <div className="mt-8 w-60 h-32 border-2 border-blue-500 flex items-center justify-center bg-gray-100 rounded-lg shadow-md text-gray-700">
+        <p className="text-md text-center">{selectedCards.text}</p>
+      </div>
         {/* <div className="flex w-full mt-10">
           <h2 className="text-xl text-blue-600 font-bold">
             Time Remaining: {countdown} seconds
@@ -291,6 +284,7 @@ const showNextCard = () => {
               <h2 className="text-2xl font-bold text-green-600 mb-4">
                 Correct!
               </h2>
+              <div className="grid gap-x-2 gap-y-2">
               <button
                 onClick={() => {
                   handleCompleteLevel8();
@@ -309,6 +303,7 @@ const showNextCard = () => {
               >
                 Hint: Not clotted
               </button>
+              </div>
             </div>
           </div>
         )}
@@ -334,7 +329,6 @@ const showNextCard = () => {
           </div>
         )}
       </div>
-    </div>
   );
 };
 export default Level8;
