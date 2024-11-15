@@ -86,10 +86,26 @@ const Level11 = ({ setCompletedLevels }) => {
   //   setDeck(shuffledDeck);
   // }, []);
 
-  useEffect(() => {
-    setDeck(initialDeck); // Set the first card as the initial card
-  }, []);
+  // useEffect(() => {
+  //   setDeck(initialDeck); // Set the first card as the initial card
+  // }, []);
 
+  // Function to shuffle an array
+  const shuffle = (array) => {
+    const shuffledArray = [...array];
+    for (let i = shuffledArray.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [shuffledArray[i], shuffledArray[j]] = [shuffledArray[j], shuffledArray[i]];
+    }
+    return shuffledArray;
+  };
+
+  // Set the shuffled deck when the component mounts
+  useEffect(() => {
+    const shuffledDeck = shuffle(initialDeck);
+    setDeck(shuffledDeck);
+  }, []);
+  
   useEffect(() => {
     if (
       selectedCards1.text !== undefined &&

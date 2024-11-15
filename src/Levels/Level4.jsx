@@ -135,6 +135,21 @@ const Level4 = ({ setCompletedLevels }) => {
   };
 
   // Shuffle function
+  const shuffle = (array) => {
+    for (let i = array.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [array[i], array[j]] = [array[j], array[i]];
+    }
+    return array;
+  };
+
+  useEffect(() => {
+    // Shuffle and set the deck every time Level 4 is loaded
+    const shuffledDeck = shuffle([...initialDeck]);
+    setDeck(shuffledDeck);
+  }, [location]);
+
+  // Shuffle function
   // const shuffle = (array) => {
   //   for (let i = array.length - 1; i > 0; i--) {
   //     const j = Math.floor(Math.random() * (i + 1));

@@ -62,10 +62,11 @@ const Level1 = ({ setCompletedLevels }) => {
     setDeck(initialDeck); // Set the first card as the initial card
   }, []);
 
-  // useEffect(() => {
-  //   const shuffledDeck = shuffle(Array.from(initialDeck.entries()));
-  //   setDeck(shuffledDeck);
-  // }, []);
+  // Shuffles and sets the deck on initial load and when game is reset
+  useEffect(() => {
+    const shuffledDeck = shuffle([...initialDeck]);
+    setDeck(shuffledDeck);
+  }, []);
 
   useEffect(() => {
     if (
@@ -119,13 +120,13 @@ const Level1 = ({ setCompletedLevels }) => {
   //   return () => clearInterval(timer);
   // }, [countdown]);
 
-  // const shuffle = (array) => {
-  //   for (let i = array.length - 1; i > 0; i--) {
-  //     const j = Math.floor(Math.random() * (i + 1));
-  //     [array[i], array[j]] = [array[j], array[i]];
-  //   }
-  //   return array;
-  // };
+  const shuffle = (array) => {
+    for (let i = array.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [array[i], array[j]] = [array[j], array[i]];
+    }
+    return array;
+  };
 
   // let x = 0;
   // const getRandomObject = () => {
@@ -245,8 +246,8 @@ const Level1 = ({ setCompletedLevels }) => {
     // setDeckIndex(null); // Reset deck index
 
     // Reshuffle the deck
-    // const reshuffledDeck = shuffle(Array.from(initialDeck.entries()));
-    // setDeck(reshuffledDeck);
+    const reshuffledDeck = shuffle(Array.from(initialDeck.entries()));
+    setDeck(reshuffledDeck);
   };
 
   return (
