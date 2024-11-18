@@ -211,7 +211,7 @@ const Level13 = ({ setCompletedLevels }) => {
     if (isCorrect) {
       console.log("correct");
       setShowSuccessPopup(true);
-      localStorage.setItem("level7Result", JSON.stringify(selectCard));
+      localStorage.setItem("level13Result", JSON.stringify(selectCard));
     } else {
       console.log("incorrect");
       setShowWrongPopup(true); // Show wrong popup
