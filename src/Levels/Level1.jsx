@@ -250,18 +250,27 @@ const Level1 = ({ setCompletedLevels }) => {
     setDeck(reshuffledDeck);
   };
 
+  // Function to handle click on a selected box
+  const handleBoxClick = (card, boxSetter) => {
+    if (!card || !card.text) return; // Ignore empty clicks
+    // Add the card back to the deck
+    setDeck((prevDeck) => [...prevDeck, card]);
+    // Reset the respective selected card to empty
+    boxSetter({});
+  };
+
   return (
-    <div className="p-6 flex flex-col items-center">
-      <h2 className="text-2xl font-bold mb-6 text-center">
+    <div className="p-4 sm:p-6 flex flex-col items-center">
+      <h2 className="text-xl sm:text-2xl font-bold mb-4 sm:mb-6 text-center">
         Select Options from Deck
       </h2>
 
       {/* Deck Display */}
-      <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-x-4 gap-y-4 mb-20 items-center mx-auto">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-5 gap-4 mb-10 items-center w-full max-w-screen-md mx-auto">
         {deck.map((card) => (
           <div
             key={card.id}
-            className="border w-48 h-32 border-blue-500 p-4 bg-gray-100 rounded-lg text-center cursor-pointer hover:bg-gray-200"
+            className="border w-full h-20 sm:h-24 md:h-32 border-blue-500 p-2 sm:p-4 bg-gray-100 rounded-lg text-center cursor-pointer hover:bg-gray-200"
             onClick={() =>
               selectCard(
                 card,
@@ -275,7 +284,7 @@ const Level1 = ({ setCompletedLevels }) => {
               )
             }
           >
-            <p>{card.text}</p>
+            <p className="text-sm sm:text-md">{card.text}</p>
           </div>
         ))}
       </div>
@@ -289,21 +298,27 @@ const Level1 = ({ setCompletedLevels }) => {
         </div>
 
         <div className="flex flex-wrap justify-center gap-8 mt-4">
-          <div className="flex flex-wrap justify-center gap-8 mt-4">
-            {[
-              selectedCards1,
-              selectedCards2,
-              selectedCards3,
-              selectedCards4,
-            ].map((card, idx) => (
+          {[selectedCards1, selectedCards2, selectedCards3, selectedCards4].map(
+            (card, idx) => (
               <div
                 key={idx}
-                className="border-2 border-blue-400 w-60 h-32 flex items-center justify-center bg-gray-100 rounded-lg shadow-md text-gray-700 transition-transform transform hover:scale-105"
+                className="border-2 border-blue-400 w-40 h-32 flex items-center justify-center bg-gray-100 rounded-lg shadow-md text-gray-700 transition-transform transform hover:scale-105 cursor-pointer"
+                onClick={() =>
+                  handleBoxClick(
+                    card,
+                    [
+                      setSelectedCards1,
+                      setSelectedCards2,
+                      setSelectedCards3,
+                      setSelectedCards4,
+                    ][idx]
+                  )
+                } // Use appropriate boxSetter
               >
-                <p className="text-md text-center">{card.text}</p>
+                <p className="text-sm text-center">{card.text}</p>
               </div>
-            ))}
-          </div>
+            )
+          )}
         </div>
       </div>
       <div className="flex w-full mt-10">
@@ -314,13 +329,13 @@ const Level1 = ({ setCompletedLevels }) => {
 
       {/* Success Popup for Correct Sequence */}
       {showSuccessPopup && (
-        <div
-          className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50" // Added z-50 here
-        >
-          <div className="bg-white rounded-lg shadow-lg p-6 w-full max-w-md text-center z-50">
-            <h2 className="text-2xl font-bold text-green-600 mb-4">Correct!</h2>
+        <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
+          <div className="bg-white rounded-lg shadow-lg p-4 sm:p-6 w-full max-w-sm text-center">
+            <h2 className="text-lg sm:text-2xl font-bold text-green-600 mb-4">
+              Correct!
+            </h2>
             <button
-              className="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600"
+              className="bg-blue-500 text-white px-4 py-2 sm:px-6 sm:py-3 rounded-md hover:bg-blue-600"
               onClick={handleSuccessClose}
             >
               Proceed to the next level
@@ -332,11 +347,13 @@ const Level1 = ({ setCompletedLevels }) => {
       {/* Wrong Popup for Incorrect Sequence */}
       {showWrongPopup && (
         <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
-          <div className="bg-white rounded-lg shadow-lg p-6 w-full max-w-md text-center">
-            <h2 className="text-2xl font-bold text-red-400 mb-4">Incorrect!</h2>
-            <p className="mb-6">You have selected the wrong option.</p>
+          <div className="bg-white rounded-lg shadow-lg p-4 sm:p-6 w-full max-w-sm text-center">
+            <h2 className="text-lg sm:text-2xl font-bold text-red-400 mb-4">
+              Incorrect!
+            </h2>
+            <p className="mb-4 sm:mb-6">You have selected the wrong option.</p>
             <button
-              className="bg-red-400 text-white px-4 py-2 rounded-md"
+              className="bg-red-400 text-white px-4 py-2 sm:px-6 sm:py-3 rounded-md"
               onClick={() => {
                 setShowWrongPopup(false);
                 resetGame();

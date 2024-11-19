@@ -312,6 +312,7 @@ const Level2 = ({ setCompletedLevels }) => {
 
     console.log("Game has been reset!");
   };
+  
 
   const handleCardSelect = (card) => {
     // Check if the card is already selected
@@ -371,27 +372,34 @@ const Level2 = ({ setCompletedLevels }) => {
       ? shuffledExaminationDeck
       : shuffledHistoryDeck;
 
-  return (
-    <div className="w-full h-auto flex flex-col items-center">
-      {/* Tabs for History and Examination */}
-      <div className="w-full h-auto flex justify-center items-center gap-4 mt-8">
-        <button
-          onClick={() => setSelectedCategory("history")}
-          className={`px-4 py-2 rounded-lg text-white ${
-            selectedCategory === "history" ? "bg-blue-700" : "bg-blue-500"
-          } hover:bg-blue-600`}
-        >
-          History
-        </button>
-        <button
-          onClick={() => setSelectedCategory("examination")}
-          className={`px-4 py-2 rounded-lg text-white ${
-            selectedCategory === "examination" ? "bg-blue-700" : "bg-blue-500"
-          } hover:bg-blue-600`}
-        >
-          Examination
-        </button>
-      </div>
+      return (
+        <div className="w-full h-auto flex flex-col items-center">
+          {/* Tabs for History and Examination */}
+          <div className="w-full h-auto flex justify-center items-center gap-4 mt-8">
+            <button
+              onClick={() => setSelectedCategory("history")}
+              className={`px-4 py-2 rounded-lg text-white ${
+                selectedCategory === "history" ? "bg-blue-700" : "bg-blue-500"
+              } hover:bg-blue-600 relative`}
+            >
+              History
+              {selectedCategory === "history" && (
+                <div className="absolute bottom-0 left-0 right-0 h-1 bg-blue-300 rounded-md"></div>
+              )}
+            </button>
+            <button
+              onClick={() => setSelectedCategory("examination")}
+              className={`px-4 py-2 rounded-lg text-white ${
+                selectedCategory === "examination" ? "bg-blue-700" : "bg-blue-500"
+              } hover:bg-blue-600 relative`}
+            >
+              Examination
+              {selectedCategory === "examination" && (
+                <div className="absolute bottom-0 left-0 right-0 h-1 bg-blue-300 rounded-md"></div>
+              )}
+            </button>
+          </div>
+      
 
       <div className="w-full h-auto mt-6 flex flex-wrap justify-center gap-4">
         {displayedCards.map((card) => (
