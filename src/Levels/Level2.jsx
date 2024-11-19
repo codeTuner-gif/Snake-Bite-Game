@@ -196,7 +196,7 @@ const Level2 = ({ setCompletedLevels }) => {
       id: 44,
       text: "Not enough signs or symptoms to diagnose poisonous snake bite",
       code: "X",
-      type : "exam",
+      type: "exam",
     },
   ];
 
@@ -318,49 +318,53 @@ const Level2 = ({ setCompletedLevels }) => {
     const isCardSelected = selectedCards.some((c) => c.id === card.id);
 
     if (isCardSelected) {
-        // If already selected, remove it
-        setSelectedCards((prevCards) =>
-            prevCards.filter((c) => c.id !== card.id)
-        );
+      // If already selected, remove it
+      setSelectedCards((prevCards) =>
+        prevCards.filter((c) => c.id !== card.id)
+      );
 
-        // Add the card back to the appropriate deck
-        if (card.type === "history") {
-            setShuffledHistoryDeck((prevDeck) => [...prevDeck, card]);
-        } else if (card.type === "exam") {
-            setShuffledExaminationDeck((prevDeck) => [...prevDeck, card]);
-        }
+      // Add the card back to the appropriate deck
+      if (card.type === "history") {
+        setShuffledHistoryDeck((prevDeck) => [...prevDeck, card]);
+      } else if (card.type === "exam") {
+        setShuffledExaminationDeck((prevDeck) => [...prevDeck, card]);
+      }
     } else if (selectedCards.length >= 4) {
-        // Exceeded card limit
-        setAbc(true); // Show alert for exceeding card limit
+      // Exceeded card limit
+      setAbc(true); // Show alert for exceeding card limit
     } else {
-        // Add the card to selectedCards
-        const newCards = [...selectedCards, card];
-        const historyCount = newCards.filter((c) => c.type === "history").length;
-        const examinationCount = newCards.filter((c) => c.type === "exam").length;
+      // Add the card to selectedCards
+      const newCards = [...selectedCards, card];
+      const historyCount = newCards.filter((c) => c.type === "history").length;
+      const examinationCount = newCards.filter((c) => c.type === "exam").length;
 
-        if (historyCount > 3 || examinationCount > 3) {
-            setAbc(true); // Show alert for exceeding the max limit
-        } else {
-            // Update the selected cards and assign to boxes
-            setSelectedCards(newCards);
+      if (historyCount > 3 || examinationCount > 3) {
+        setAbc(true); // Show alert for exceeding the max limit
+      } else {
+        // Update the selected cards and assign to boxes
+        setSelectedCards(newCards);
 
-            // Remove the card from the appropriate deck
-            if (card.type === "history") {
-                setShuffledHistoryDeck((prevDeck) => prevDeck.filter((c) => c.id !== card.id));
-                if (newCards.length === 1) setBox1(card);
-                else if (newCards.length === 2) setBox2(card);
-                else if (newCards.length === 3) setBox3(card);
-                else if (newCards.length === 4) setBox4(card);
-            } else if (card.type === "exam") {
-                setShuffledExaminationDeck((prevDeck) => prevDeck.filter((c) => c.id !== card.id));
-                if (newCards.length === 1) setBox1(card);
-                else if (newCards.length === 2) setBox2(card);
-                else if (newCards.length === 3) setBox3(card);
-                else if (newCards.length === 4) setBox4(card);
-            }
+        // Remove the card from the appropriate deck
+        if (card.type === "history") {
+          setShuffledHistoryDeck((prevDeck) =>
+            prevDeck.filter((c) => c.id !== card.id)
+          );
+          if (newCards.length === 1) setBox1(card);
+          else if (newCards.length === 2) setBox2(card);
+          else if (newCards.length === 3) setBox3(card);
+          else if (newCards.length === 4) setBox4(card);
+        } else if (card.type === "exam") {
+          setShuffledExaminationDeck((prevDeck) =>
+            prevDeck.filter((c) => c.id !== card.id)
+          );
+          if (newCards.length === 1) setBox1(card);
+          else if (newCards.length === 2) setBox2(card);
+          else if (newCards.length === 3) setBox3(card);
+          else if (newCards.length === 4) setBox4(card);
         }
+      }
     }
-};
+  };
 
   const displayedCards =
     selectedCategory === "examination"
@@ -369,16 +373,21 @@ const Level2 = ({ setCompletedLevels }) => {
 
   return (
     <div className="w-full h-auto flex flex-col items-center">
+      {/* Tabs for History and Examination */}
       <div className="w-full h-auto flex justify-center items-center gap-4 mt-8">
         <button
           onClick={() => setSelectedCategory("history")}
-          className="px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600"
+          className={`px-4 py-2 rounded-lg text-white ${
+            selectedCategory === "history" ? "bg-blue-700" : "bg-blue-500"
+          } hover:bg-blue-600`}
         >
           History
         </button>
         <button
           onClick={() => setSelectedCategory("examination")}
-          className="px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600"
+          className={`px-4 py-2 rounded-lg text-white ${
+            selectedCategory === "examination" ? "bg-blue-700" : "bg-blue-500"
+          } hover:bg-blue-600`}
         >
           Examination
         </button>
@@ -472,7 +481,9 @@ const Level2 = ({ setCompletedLevels }) => {
         <div className="fixed inset-0 flex items-center justify-center bg-gray-800 bg-opacity-50 z-50">
           <div className="bg-white p-6 rounded-lg shadow-lg">
             <h2 className="text-xl font-bold mb-4 text-red-600">Alert!</h2>
-            <p className="text-lg">Maximum 3 cards can be selected from a deck</p>
+            <p className="text-lg">
+              Maximum 3 cards can be selected from a deck
+            </p>
             <button
               className="mt-4 px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600"
               onClick={() => {
