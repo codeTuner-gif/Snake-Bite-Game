@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
+import { FaClock, FaQuestionCircle } from "react-icons/fa";
 
 const Level1 = ({ setCompletedLevels }) => {
   const location = useLocation();
@@ -14,7 +15,7 @@ const Level1 = ({ setCompletedLevels }) => {
   const [showWrongPopup, setShowWrongPopup] = useState(false);
   const [result, SetResult] = useState([]);
   const [sc, setsc] = useState(0);
-  // const [countdown, setCountdown] = useState(3000);
+  const [countdown, setCountdown] = useState(3000);
 
   const handleCompleteLevel1 = () => {
     // Mark level 1 as completed
@@ -105,20 +106,20 @@ const Level1 = ({ setCompletedLevels }) => {
     }
   };
 
-  // useEffect(() => {
-  //   if (countdown <= 0) {
-  //     resetGame(); // Reload the page when countdown reaches zero
-  //     return;
-  //   }
+  useEffect(() => {
+    if (countdown <= 0) {
+      resetGame(); // Reload the page when countdown reaches zero
+      return;
+    }
 
-  //   // Set the interval to decrease countdown every second (1000 ms)
-  //   const timer = setInterval(() => {
-  //     setCountdown((prev) => prev - 1);
-  //   }, 1000);
+    // Set the interval to decrease countdown every second (1000 ms)
+    const timer = setInterval(() => {
+      setCountdown((prev) => prev - 1);
+    }, 1000);
 
-  //   // Cleanup the interval on component unmount
-  //   return () => clearInterval(timer);
-  // }, [countdown]);
+    // Cleanup the interval on component unmount
+    return () => clearInterval(timer);
+  }, [countdown]);
 
   const shuffle = (array) => {
     for (let i = array.length - 1; i > 0; i--) {
@@ -260,7 +261,23 @@ const Level1 = ({ setCompletedLevels }) => {
   };
 
   return (
-    <div className="p-4 sm:p-6 flex flex-col items-center">
+      <div className="p-4 sm:p-6 flex flex-col items-center relative">
+        {/* Icons on the top-right corner */}
+        <div className="absolute top-4 right-4 flex items-center gap-4">
+          <div className="flex items-center gap-2 cursor-pointer">
+            <FaClock className="text-blue-500 text-xl sm:text-2xl" />
+        
+        <h2 className="text-xl text-blue-600 font-bold">
+           {countdown} s
+          </h2>
+ 
+          </div>
+          <div className="flex items-center gap-2 cursor-pointer">
+            <FaQuestionCircle className="text-blue-500 text-xl sm:text-2xl" />
+            <span className="text-blue-500 text-sm sm:text-base">Help</span>
+          </div>
+        </div>
+  
       <h2 className="text-xl sm:text-2xl font-bold mb-4 sm:mb-6 text-center">
         Select Options from Deck
       </h2>
@@ -321,11 +338,7 @@ const Level1 = ({ setCompletedLevels }) => {
           )}
         </div>
       </div>
-      <div className="flex w-full mt-10">
-        {/* <h2 className="text-xl text-blue-600 font-bold">
-            Time Remaining: {countdown} seconds
-          </h2> */}
-      </div>
+      
 
       {/* Success Popup for Correct Sequence */}
       {showSuccessPopup && (
