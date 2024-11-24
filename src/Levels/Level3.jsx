@@ -124,6 +124,17 @@ const Level3 = ({ setCompletedLevels }) => {
     navigate(path);
   };
 
+  const codeSelection = () => {
+    const level2Result = JSON.parse(localStorage.getItem("level2Result")) || [];
+    for (let i = 0; i < level2Result.length; i++) {
+      if (level2Result[i] === "X") {
+        return false;
+      }
+    }
+    return true;
+    // console.log(level2Result);
+  };
+
   return (
     <div className="p-6 flex flex-col items-center">
       <h2 className="text-2xl font-bold text-blue-400 mx-auto">Initial Management</h2>
@@ -165,6 +176,31 @@ const Level3 = ({ setCompletedLevels }) => {
       </div>
 
       {showSuccessPopup && (
+          <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
+            <div className="bg-white rounded-lg shadow-lg p-6 w-full max-w-md text-center">
+              <h2 className="text-2xl font-bold text-green-600 mb-4">
+                Correct!
+              </h2>
+              {codeSelection() ? (
+                <button
+                  onClick={() => handleCompleteLevel3("/level4")} // Redirect to Level 4
+                  className="mt-4 bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600"
+                >
+                  Sign of Envenomation
+                </button>
+              ) : (
+                <button
+                  onClick={() => handleCompleteLevel3("/level5")} // Redirect to Level 5
+                  className="mt-4 bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600"
+                >
+                  No Sign of Envenomation
+                </button>
+              )}
+            </div>
+          </div>
+        )}
+
+      {/* {showSuccessPopup && (
         <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
           <div className="bg-white rounded-lg shadow-lg p-6 w-full max-w-md text-center">
             <h2 className="text-2xl font-bold text-green-600 mb-4">Correct!</h2>
@@ -176,7 +212,7 @@ const Level3 = ({ setCompletedLevels }) => {
             </button>
           </div>
         </div>
-      )}
+      )} */}
 
       {showWrongPopup && (
         <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
