@@ -279,24 +279,25 @@ const Level12 = ({ setCompletedLevels }) => {
       </div>
 
       <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-x-4 gap-y-4 mb-20 items-center mx-auto">
-        {deck.map((card) => (
-          <div
-            key={card.id}
-            className="border w-48 h-32 border-blue-500 p-4 bg-gray-100 rounded-lg text-center cursor-pointer hover:bg-gray-200"
-            onClick={() => {
-              if (!selectedCards1.text) {
-                selectCard(card, setSelectedCards1);
-              } else if (!selectedCards2.text) {
-                selectCard(card, setSelectedCards2);
-              } else {
-                console.log("Both selections are filled.");
-              }
-            }}
-          >
-            <p>{card.text}</p>
-          </div>
-        ))}
-      </div>
+  {deck.map((card) => (
+    <div
+      key={card.id}
+      className="border w-48 h-32 border-blue-500 bg-gray-100 rounded-lg cursor-pointer hover:bg-gray-200 flex justify-center items-center"
+      onClick={() => {
+        if (!selectedCards1.text) {
+          selectCard(card, setSelectedCards1);
+        } else if (!selectedCards2.text) {
+          selectCard(card, setSelectedCards2);
+        } else {
+          console.log("Both selections are filled.");
+        }
+      }}
+    >
+      <p className="text-center">{card.text}</p>
+    </div>
+  ))}
+</div>
+
 
       {/* Selected Boxes */}
       <div className="text-xl w-full h-30">

@@ -13,7 +13,7 @@ const Level8 = ({ setCompletedLevels }) => {
   const [showSuccessPopup, setShowSuccessPopup] = useState(false);
   const [showWrongPopup, setShowWrongPopup] = useState(false);
   const [result, SetResult] = useState([]);
-  const [level2Selection, setLevel2Selection] = useState(null);
+  const [level3Selection, setLevel3Selection] = useState(null);
 
   const handleCompleteLevel8 = () => {
     // Mark level 7 as completed
@@ -94,9 +94,9 @@ const Level8 = ({ setCompletedLevels }) => {
 
   useEffect(() => {
     // Retrieve the selection from Level 2 from localStorage
-    const level2Result = JSON.parse(localStorage.getItem("level2Result")) || [];
-    if (level2Result) {
-      setLevel2Selection(level2Result);
+    const level3Result = JSON.parse(localStorage.getItem("level3Result")) || [];
+    if (level3Result) {
+      setLevel3Selection(level3Result);
     }
   }, []);
 

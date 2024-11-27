@@ -15,7 +15,7 @@ const Level1 = ({ setCompletedLevels }) => {
   const [showWrongPopup, setShowWrongPopup] = useState(false);
   const [result, SetResult] = useState([]);
   const [sc, setsc] = useState(0);
-  const [countdown, setCountdown] = useState(3000);
+  // const [countdown, setCountdown] = useState(3000);
 
   const handleCompleteLevel1 = () => {
     // Mark level 1 as completed
@@ -40,14 +40,14 @@ const Level1 = ({ setCompletedLevels }) => {
     { id: 1, text: "Reassure" },
     { id: 2, text: "Apply tourniquets tightly to occlude blood flow" },
     { id: 3, text: "Immobilize like a fractured limb" },
-    { id: 4, text: "Do suction at wound site" },
+    { id: 4, text: "Apply suction at wound site" },
     { id: 5, text: "Apply turmeric/antiseptic ointment to local wound" },
     { id: 6, text: "Make an incision at the bite site" },
     {
       id: 7,
-      text: "Traditional healers can be consulted because they are locally accessible",
+      text: "Consult traditional healers, because they are locally accessible",
     },
-    { id: 8, text: "Go to nearest hospital" },
+    { id: 8, text: "Go to nearest Govt. hospital" },
     { id: 9, text: "Tell the doctor of any emergent sign" },
     { id: 10, text: "Try to capture the snake or take a picture of the snake" },
   ];
@@ -55,7 +55,7 @@ const Level1 = ({ setCompletedLevels }) => {
   const correctSequence = [
     { id: 1, text: "Reassure" },
     { id: 3, text: "Immobilize like a fractured limb" },
-    { id: 8, text: "Go to nearest hospital" },
+    { id: 8, text: "Go to nearest Govt. hospital" },
     { id: 9, text: "Tell the doctor of any emergent sign" },
   ];
 
@@ -106,20 +106,20 @@ const Level1 = ({ setCompletedLevels }) => {
     }
   };
 
-  useEffect(() => {
-    if (countdown <= 0) {
-      resetGame(); // Reload the page when countdown reaches zero
-      return;
-    }
+  // useEffect(() => {
+  //   if (countdown <= 0) {
+  //     resetGame(); // Reload the page when countdown reaches zero
+  //     return;
+  //   }
 
-    // Set the interval to decrease countdown every second (1000 ms)
-    const timer = setInterval(() => {
-      setCountdown((prev) => prev - 1);
-    }, 1000);
+  //   // Set the interval to decrease countdown every second (1000 ms)
+  //   const timer = setInterval(() => {
+  //     setCountdown((prev) => prev - 1);
+  //   }, 1000);
 
-    // Cleanup the interval on component unmount
-    return () => clearInterval(timer);
-  }, [countdown]);
+  //   // Cleanup the interval on component unmount
+  //   return () => clearInterval(timer);
+  // }, [countdown]);
 
   const shuffle = (array) => {
     for (let i = array.length - 1; i > 0; i--) {
@@ -246,9 +246,9 @@ const Level1 = ({ setCompletedLevels }) => {
     setDeck(initialDeck); // Reset to the first card in the deck
     // setDeckIndex(null); // Reset deck index
 
-    // Reshuffle the deck
-    const reshuffledDeck = shuffle(Array.from(initialDeck.entries()));
-    setDeck(reshuffledDeck);
+    // // Reshuffle the deck
+    // const reshuffledDeck = shuffle(Array.from(initialDeck.entries()));
+    // setDeck(reshuffledDeck);
   };
 
   // Function to handle click on a selected box
@@ -267,9 +267,9 @@ const Level1 = ({ setCompletedLevels }) => {
           <div className="flex items-center gap-2 cursor-pointer">
             <FaClock className="text-blue-500 text-xl sm:text-2xl" />
         
-        <h2 className="text-xl text-blue-600 font-bold">
+       { /*<h2 className="text-xl text-blue-600 font-bold">
            {countdown} s
-          </h2>
+          </h2>*/}
  
           </div>
           <div className="flex items-center gap-2 cursor-pointer">
@@ -278,39 +278,40 @@ const Level1 = ({ setCompletedLevels }) => {
           </div>
         </div>
   
-      <h2 className="text-xl sm:text-2xl font-bold mb-4 sm:mb-6 text-center">
-        Select Options from Deck
+      <h2 className="text-2xl font-bold text-blue-400 mx-auto">
+        You have come across a patient of Snake bite. Now choose appropriate actions
       </h2>
 
       {/* Deck Display */}
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-5 gap-4 mb-10 items-center w-full max-w-screen-md mx-auto">
-        {deck.map((card) => (
-          <div
-            key={card.id}
-            className="border w-full h-20 sm:h-24 md:h-32 border-blue-500 p-2 sm:p-4 bg-gray-100 rounded-lg text-center cursor-pointer hover:bg-gray-200"
-            onClick={() =>
-              selectCard(
-                card,
-                !selectedCards1.text
-                  ? setSelectedCards1
-                  : !selectedCards2.text
-                  ? setSelectedCards2
-                  : !selectedCards3.text
-                  ? setSelectedCards3
-                  : setSelectedCards4
-              )
-            }
-          >
-            <p className="text-sm sm:text-md">{card.text}</p>
-          </div>
-        ))}
-      </div>
+  {deck.map((card) => (
+    <div
+      key={card.id}
+      className="border w-full h-20 sm:h-24 md:h-32 border-blue-500 p-2 sm:p-4 bg-gray-100 rounded-lg text-center cursor-pointer hover:bg-gray-200 flex justify-center items-center"
+      onClick={() =>
+        selectCard(
+          card,
+          !selectedCards1.text
+            ? setSelectedCards1
+            : !selectedCards2.text
+            ? setSelectedCards2
+            : !selectedCards3.text
+            ? setSelectedCards3
+            : setSelectedCards4
+        )
+      }
+    >
+      <p className="text-sm sm:text-md">{card.text}</p>
+    </div>
+  ))}
+</div>
+
 
       {/* Selected Boxes */}
       <div className="text-xl w-full h-30">
         <div>
           <h2 className="text-center text-lg font-bold">
-            Select Correct option
+            Select Correct options
           </h2>
         </div>
 
@@ -345,7 +346,7 @@ const Level1 = ({ setCompletedLevels }) => {
         <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
           <div className="bg-white rounded-lg shadow-lg p-4 sm:p-6 w-full max-w-sm text-center">
             <h2 className="text-lg sm:text-2xl font-bold text-green-600 mb-4">
-              Correct!
+              Your choices are correct
             </h2>
             <button
               className="bg-blue-500 text-white px-4 py-2 sm:px-6 sm:py-3 rounded-md hover:bg-blue-600"
@@ -362,9 +363,9 @@ const Level1 = ({ setCompletedLevels }) => {
         <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
           <div className="bg-white rounded-lg shadow-lg p-4 sm:p-6 w-full max-w-sm text-center">
             <h2 className="text-lg sm:text-2xl font-bold text-red-400 mb-4">
-              Incorrect!
+              Your choices are incorrect
             </h2>
-            <p className="mb-4 sm:mb-6">You have selected the wrong option.</p>
+            {/* <p className="mb-4 sm:mb-6">You have selected the wrong option.</p> */}
             <button
               className="bg-red-400 text-white px-4 py-2 sm:px-6 sm:py-3 rounded-md"
               onClick={() => {

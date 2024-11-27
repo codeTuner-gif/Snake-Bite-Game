@@ -13,11 +13,11 @@ const FinalResult13 = () => {
   const isPathB = location.state?.isPathB || false;
   
   const levelTitles = {
-    level1Result: "Level 1",
-    level2Result: "Level 2",
-    level3Result: "Initial Management", 
-    level4Result: "Sign of Envenomation",
-    level6Result: "AVS reaction ",
+    level1Result: "Level 1",    
+    level2Result: "Initial Management",
+    level3Result: "Level 3", 
+    level4Result: "Options available for management",
+    level6Result: "5 mins after starting AVS, patient develops Anaphylactoid. Options available for management",
     level7Result: "Neurological signs",
     level9Result: "Improving after 30 min",
     level10Result: "Not improving after 30 min",
@@ -27,9 +27,9 @@ const FinalResult13 = () => {
 
   useEffect(() => {
     const results = {
-      level1Result: JSON.parse(localStorage.getItem("level1Result")),
-      level2Result: JSON.parse(localStorage.getItem("level2TextResult")),
-      level3Result: JSON.parse(localStorage.getItem("level3Result")),
+      level1Result: JSON.parse(localStorage.getItem("level1Result")),      
+      level2Result: JSON.parse(localStorage.getItem("level2Result")),
+      level3Result: JSON.parse(localStorage.getItem("level3TextResult")),
       level4Result: JSON.parse(localStorage.getItem("level4Result")),
       level6Result: JSON.parse(localStorage.getItem("level6Result")),
       level7Result: JSON.parse(localStorage.getItem("level7Result")),

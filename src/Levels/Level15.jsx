@@ -237,7 +237,7 @@ const Level15 = ({ setCompletedLevels }) => {
     <div className="flex items-center justify-between w-full">
       {/* <h2 className="text-xl font-bold mx-auto mr-54">Choose card from deck</h2> */}
       <h2 className="text-2xl font-bold text-blue-400 mx-auto mr-50 mb-6">
-      Clotted in all occasions:
+      Options available when WBCT comes clotted in all occations:
           </h2>
       
     </div>
@@ -274,7 +274,7 @@ const Level15 = ({ setCompletedLevels }) => {
         {showSuccessPopup && (
           <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
             <div className="bg-white rounded-lg shadow-lg p-6 w-full max-w-md text-center">
-              <h2 className="text-2xl font-bold text-green-600 mb-4">Correct!</h2>
+              <h2 className="text-2xl font-bold text-green-600 mb-4">Your choices are correct</h2>
               <h2 className="text-xl mb-4">
                 To start the game again click on the button below
               </h2>
@@ -282,7 +282,7 @@ const Level15 = ({ setCompletedLevels }) => {
                 className="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600"
                 onClick={handleSuccessClose}
               >
-                Submit
+                Submit & Start over
               </button>
             </div>
           </div>
@@ -292,8 +292,8 @@ const Level15 = ({ setCompletedLevels }) => {
         {showWrongPopup && (
           <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
             <div className="bg-white rounded-lg shadow-lg p-6 w-full max-w-md text-center">
-              <h2 className="text-2xl font-bold text-red-400 mb-4">Incorrect!</h2>
-              <p className="mb-6">You have selected the wrong sequence.</p>
+              <h2 className="text-2xl font-bold text-red-400 mb-4">Your choices are incorrect</h2>
+              {/* <p className="mb-6">You have selected the wrong sequence.</p> */}
               <button
                 className="bg-red-400 text-white px-4 py-2 rounded-md"
                 onClick={() => {

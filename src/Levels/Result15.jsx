@@ -7,25 +7,25 @@ const FinalResult15 = () => {
 
   // Map of level results to their display titles
   const levelTitles = {
-    level1Result: "Level 1",
-    level2Result: "Level 2",
-    level3Result: "Initial Management", 
-    level4Result: "Sign of Envenomation",
-    level6Result: "AVS reaction ",
-    level8Result: "Signs of bleeding",
-    level11Result: "Clotted",
-    level15Result: "Clotted in all occasions",
+    level1Result: "Level 1",    
+    level2Result: "Initial Management", 
+    level3Result: "Level 3",
+    level4Result: "Options available for management",
+    level6Result: "5 mins after starting AVS, patient develops Anaphylactoid. Options available for management",
+    // level8Result: "Signs of bleeding",
+    level11Result: "Options available when initial WBCT 20 comes clotted",
+    level15Result: "Options available when WBCT comes clotted in all occations",
   };
 
   useEffect(() => {
     // Retrieve each level's result from localStorage
     const results = {
-      level1Result: JSON.parse(localStorage.getItem("level1Result")),
-      level2Result: JSON.parse(localStorage.getItem("level2TextResult")),
-      level3Result: JSON.parse(localStorage.getItem("level3Result")),
+      level1Result: JSON.parse(localStorage.getItem("level1Result")),      
+      level2Result: JSON.parse(localStorage.getItem("level2Result")),
+      level3Result: JSON.parse(localStorage.getItem("level3TextResult")),
       level4Result: JSON.parse(localStorage.getItem("level4Result")),
       level6Result: JSON.parse(localStorage.getItem("level6Result")),
-      level8Result: JSON.parse(localStorage.getItem("level8Result")),
+      // level8Result: JSON.parse(localStorage.getItem("level8Result")),
       level11Result: JSON.parse(localStorage.getItem("level11Result")),
       level15Result: JSON.parse(localStorage.getItem("level15Result")),
     };

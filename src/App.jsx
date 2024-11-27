@@ -120,13 +120,24 @@ function App() {
           }
         /> */}
         <Route
-          path="/level8"
+          path="/level11"
           element={
             <ProtectedRoute
               completed={completedLevels.level6}
               redirectTo="/level6"
             >
-              <Level8 setCompletedLevels={setCompletedLevels} />
+              <Level11 setCompletedLevels={setCompletedLevels} />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/level12"
+          element={
+            <ProtectedRoute
+              completed={completedLevels.level6}
+              redirectTo="/level6"
+            >
+              <Level12 setCompletedLevels={setCompletedLevels} />
             </ProtectedRoute>
           }
         />
