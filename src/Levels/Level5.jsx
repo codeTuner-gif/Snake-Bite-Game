@@ -246,24 +246,25 @@ const Level5 = ({ setCompletedLevels }) => {
       </div>
   
       <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-x-4 gap-y-4 mb-20 items-center mx-auto">
-        {deck.map((card) => (
-          <div
-            key={card.id}
-            className="border w-48 h-32 border-blue-500 p-4 bg-gray-100 rounded-lg text-center cursor-pointer hover:bg-gray-200"
-            onClick={() => {
-              if (!selectedCards1.text) {
-                selectCard(card, setSelectedCards1);
-              } else if (!selectedCards2.text) {
-                selectCard(card, setSelectedCards2);
-              } else {
-                console.log("Both selections are filled.");
-              }
-            }}
-          >
-            <p>{card.text}</p>
-          </div>
-        ))}
-      </div>
+  {deck.map((card) => (
+    <div
+      key={card.id}
+      className="border w-48 h-32 border-blue-500 bg-gray-100 rounded-lg cursor-pointer hover:bg-gray-200 flex justify-center items-center"
+      onClick={() => {
+        if (!selectedCards1.text) {
+          selectCard(card, setSelectedCards1);
+        } else if (!selectedCards2.text) {
+          selectCard(card, setSelectedCards2);
+        } else {
+          console.log("Both selections are filled.");
+        }
+      }}
+    >
+      <p className="text-center">{card.text}</p>
+    </div>
+  ))}
+</div>
+
   
       {/* Selected Boxes */}
       <div className="text-xl w-full h-30">
@@ -297,11 +298,11 @@ const Level5 = ({ setCompletedLevels }) => {
           >
             <div className="bg-white rounded-lg shadow-lg p-6 w-full max-w-md text-center z-50">
               <h2 className="text-2xl font-bold text-green-600 mb-4">
-                Correct!
+                Your choices are correct
               </h2>
-              <h2 className="text-xl mb-4">
+              {/* <h2 className="text-xl mb-4">
                 To start the game again click on the button below
-              </h2>
+              </h2> */}
               <button
                 className="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600"
                 onClick={handleSuccessClose}
@@ -317,9 +318,9 @@ const Level5 = ({ setCompletedLevels }) => {
           <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
             <div className="bg-white rounded-lg shadow-lg p-6 w-full max-w-md text-center">
               <h2 className="text-2xl font-bold text-red-400 mb-4">
-                Incorrect!
+                Your choices are incorrect
               </h2>
-              <p className="mb-6">You have selected the wrong sequence.</p>
+              {/* <p className="mb-6">You have selected the wrong sequence.</p> */}
               <button
                 className="bg-red-400 text-white px-4 py-2 rounded-md"
                 onClick={() => {

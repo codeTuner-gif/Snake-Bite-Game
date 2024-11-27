@@ -7,18 +7,18 @@ const FinalResult5 = () => {
 
   // Define custom titles for levels
   const levelTitles = {
-    level1Result: "Level 1",
-    level2Result: "Level 2",
-    level3Result: "Initial Management", 
+    level1Result: "Level 1",    
+    level2Result: "Initial Management", 
+    level3Result: "Level 3",
     level5Result: "No sign of Envenomation",
   };
 
   useEffect(() => {
     // Retrieve each level's result from localStorage
     const results = {
-      level1Result: JSON.parse(localStorage.getItem("level1Result")),
-      level2Result: JSON.parse(localStorage.getItem("level2TextResult")),
-      level3Result: JSON.parse(localStorage.getItem("level3Result")),
+      level1Result: JSON.parse(localStorage.getItem("level1Result")),     
+      level2Result: JSON.parse(localStorage.getItem("level2Result")),
+      level3Result: JSON.parse(localStorage.getItem("level3TextResult")),
       level5Result: JSON.parse(localStorage.getItem("level5Result")),
     };
     setAllResults(results); // Store results in state

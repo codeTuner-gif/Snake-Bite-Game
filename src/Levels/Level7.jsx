@@ -14,7 +14,7 @@ const Level7 = ({ setCompletedLevels }) => {
   const [showWrongPopup, setShowWrongPopup] = useState(false);
   const [result, SetResult] = useState([]);
   // const [countdown, setCountdown] = useState(1000);
-  const [level2Selection, setLevel2Selection] = useState(null);
+  const [level3Selection, setLevel3Selection] = useState(null);
 
   const handleCompleteLevel7 = () => {
     // Mark level 7 as completed
@@ -97,9 +97,9 @@ const Level7 = ({ setCompletedLevels }) => {
 
   useEffect(() => {
     // Retrieve the selection from Level 2 from localStorage
-    const level2Result = JSON.parse(localStorage.getItem("level2Result")) || [];
-    if (level2Result) {
-      setLevel2Selection(level2Result);
+    const level3Result = JSON.parse(localStorage.getItem("level3Result")) || [];
+    if (level3Result) {
+      setLevel3Selection(level3Result);
     }
   }, []);
 
@@ -234,14 +234,14 @@ const Level7 = ({ setCompletedLevels }) => {
   };
 
   // const codeSelection = () => {
-  //   const level2Result = JSON.parse(localStorage.getItem("level2Result")) || [];
-  //   for (let i = 0; i < level2Result.length; i++) {
-  //     if (level2Result[i] === "H") {
+  //   const level3Result = JSON.parse(localStorage.getItem("level3Result")) || [];
+  //   for (let i = 0; i < level3Result.length; i++) {
+  //     if (level3Result[i] === "H") {
   //       return false;
   //     }
   //   }
   //   return true;
-  //   // console.log(level2Result);
+  //   // console.log(level3Result);
   // };
 
   return (

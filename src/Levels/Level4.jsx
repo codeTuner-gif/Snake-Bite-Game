@@ -14,7 +14,7 @@ const Level4 = ({ setCompletedLevels }) => {
   const [showSuccessPopup, setShowSuccessPopup] = useState(false);
   const [showWrongPopup, setShowWrongPopup] = useState(false);
   const [result, SetResult] = useState([]);
-  const [level2Selection, setLevel2Selection] = useState(null);
+  const [level3Selection, setLevel3Selection] = useState(null);
 
   const handleCompleteLevel4 = (level) => {
     // Mark level 4 as completed
@@ -117,9 +117,9 @@ const Level4 = ({ setCompletedLevels }) => {
 
   useEffect(() => {
     // Retrieve the selection from Level 2 from localStorage
-    const level2Result = JSON.parse(localStorage.getItem("level2Result")) || [];
-    if (level2Result) {
-      setLevel2Selection(level2Result);
+    const level3Result = JSON.parse(localStorage.getItem("level3Result")) || [];
+    if (level3Result) {
+      setLevel3Selection(level3Result);
     }
   }, []);
 
@@ -272,14 +272,14 @@ const Level4 = ({ setCompletedLevels }) => {
   };
 
   const codeSelection = () => {
-    const level2Result = JSON.parse(localStorage.getItem("level2Result")) || [];
-    for (let i = 0; i < level2Result.length; i++) {
-      if (level2Result[i] === "X") {
+    const level3Result = JSON.parse(localStorage.getItem("level3Result")) || [];
+    for (let i = 0; i < level3Result.length; i++) {
+      if (level3Result[i] === "X") {
         return false;
       }
     }
     return true;
-    // console.log(level2Result);
+    // console.log(level3Result);
   };
 
   return (
@@ -287,35 +287,36 @@ const Level4 = ({ setCompletedLevels }) => {
       <div className="flex items-center justify-between w-full">
         {/* <h2 className="text-xl font-bold mx-auto mr-54">Choose card from deck</h2> */}
         <h2 className="text-2xl font-bold text-blue-400 mx-auto mr-50 mb-6">
-          Manage according to envenomation (Haemotoxic Envenomation): 
+          Options available for management (Haemotoxic envenomation selected)  
         </h2>
       </div>
 
       <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-4 gap-x-4 gap-y-4 mb-20 items-center mx-auto">
-        {deck.map((card) => (
-          <div
-            key={card.id}
-            className="border w-48 h-32 border-blue-500 p-4 bg-gray-100 rounded-lg text-center cursor-pointer hover:bg-gray-200"
-            onClick={() => {
-              if (!selectedCards1.text) {
-                selectCard(card, setSelectedCards1);
-              } else if (!selectedCards2.text) {
-                selectCard(card, setSelectedCards2);
-              } else {
-                console.log("Both selections are filled.");
-              }
-            }}
-          >
-            <p>{card.text}</p>
-          </div>
-        ))}
-      </div>
+  {deck.map((card) => (
+    <div
+      key={card.id}
+      className="border w-48 h-32 border-blue-500 bg-gray-100 rounded-lg text-center cursor-pointer hover:bg-gray-200 flex justify-center items-center"
+      onClick={() => {
+        if (!selectedCards1.text) {
+          selectCard(card, setSelectedCards1);
+        } else if (!selectedCards2.text) {
+          selectCard(card, setSelectedCards2);
+        } else {
+          console.log("Both selections are filled.");
+        }
+      }}
+    >
+      <p>{card.text}</p>
+    </div>
+  ))}
+</div>
+
 
       {/* Selected Boxes */}
       <div className="text-xl w-full h-30">
         <div>
           <h2 className="text-center text-lg font-bold">
-            Select Correct option
+            Select Correct options
           </h2>
         </div>
 
@@ -341,14 +342,15 @@ const Level4 = ({ setCompletedLevels }) => {
       {showSuccessPopup && (
         <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
           <div className="bg-white rounded-lg shadow-lg p-6 w-full max-w-md text-center">
-            <h2 className="text-2xl font-bold text-green-600 mb-4">Correct!</h2>
+            <h2 className="text-2xl font-bold text-green-600 mb-4">Your choices are correct</h2>
             {codeSelection && ( // Check if codeSelection is valid
               <button
                 onClick={() => handleCompleteLevel4("/level6")} // Ensure this function navigates correctly
                 className="mt-4 bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600"
               >
-                Hint: Scalp itching/ Hypotension/ Pain abdomen/ Vomiting/
-                Urticaria
+                {/* Hint: Scalp itching/ Hypotension/ Pain abdomen/ Vomiting/
+                Urticaria */}
+                Go to next step
               </button>
             )}
           </div>
@@ -359,8 +361,8 @@ const Level4 = ({ setCompletedLevels }) => {
       {showWrongPopup && (
         <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
           <div className="bg-white rounded-lg shadow-lg p-6 w-full max-w-md text-center">
-            <h2 className="text-2xl font-bold text-red-400 mb-4">Incorrect!</h2>
-            <p className="mb-6">You have selected the wrong sequence.</p>
+            <h2 className="text-2xl font-bold text-red-400 mb-4">Your choices are incorrect</h2>
+            {/* <p className="mb-6">You have selected the wrong sequence.</p> */}
             <button
               className="bg-red-400 text-white px-4 py-2 rounded-md"
               onClick={() => {

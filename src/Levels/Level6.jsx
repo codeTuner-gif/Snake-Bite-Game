@@ -15,7 +15,7 @@ const Level6 = ({ setCompletedLevels }) => {
   const [showWrongPopup, setShowWrongPopup] = useState(false);
   const [result, SetResult] = useState([]);
   // const [countdown, setCountdown] = useState(1000);
-  const [level2Selection, setLevel2Selection] = useState(null);
+  const [level3Selection, setLevel3Selection] = useState(null);
 
   const handleCompleteLevel6 = () => {
     // Mark level 6 as completed
@@ -78,19 +78,21 @@ const Level6 = ({ setCompletedLevels }) => {
     { id: 3, text: "IM" },
   ];
 
-
   // Shuffle the deck when the component mounts
   // useEffect(() => {
   //   const shuffledDeck = shuffle(Array.from(initialDeck.entries()));
   //   setDeck(shuffledDeck);
   // }, []);
 
-   // Function to shuffle the deck
-   const shuffle = (array) => {
+  // Function to shuffle the deck
+  const shuffle = (array) => {
     const shuffledArray = [...array];
     for (let i = shuffledArray.length - 1; i > 0; i--) {
       const j = Math.floor(Math.random() * (i + 1));
-      [shuffledArray[i], shuffledArray[j]] = [shuffledArray[j], shuffledArray[i]];
+      [shuffledArray[i], shuffledArray[j]] = [
+        shuffledArray[j],
+        shuffledArray[i],
+      ];
     }
     return shuffledArray;
   };
@@ -116,9 +118,9 @@ const Level6 = ({ setCompletedLevels }) => {
 
   useEffect(() => {
     // Retrieve the selection from Level 2 from localStorage
-    const level2Result = JSON.parse(localStorage.getItem("level2Result")) || [];
-    if (level2Result) {
-      setLevel2Selection(level2Result);
+    const level3Result = JSON.parse(localStorage.getItem("level3Result")) || [];
+    if (level3Result) {
+      setLevel3Selection(level3Result);
     }
   }, []);
 
@@ -306,43 +308,46 @@ const Level6 = ({ setCompletedLevels }) => {
   };
 
   const codeSelection = () => {
-    const level2Result = JSON.parse(localStorage.getItem("level2Result")) || [];
-    for (let i = 0; i < level2Result.length; i++) {
-      if (level2Result[i] === "H") {
+    const level3Result = JSON.parse(localStorage.getItem("level3Result")) || [];
+    for (let i = 0; i < level3Result.length; i++) {
+      if (level3Result[i] === "H") {
         return false;
       }
     }
     return true;
-    // console.log(level2Result);
+    // console.log(level3Result);
   };
 
   return (
     <div className="p-6 flex flex-col items-center">
       <div className="flex items-center justify-between w-full">
         {/* <h2 className="text-xl font-bold mx-auto mr-54">Choose card from deck</h2> */}
-        <h2 className="text-2xl font-bold text-blue-400 mx-auto mr-50">
-          AVS reaction:
+        <h2 className="text-2xl font-bold text-blue-400 mx-auto mr-50 text-center">
+          {/* AVS reaction: */}
+          5 mins after starting AVS, patient develops Anaphylactoid. <br />{" "}
+          Options available for management:
         </h2>
       </div>
 
       {/* Deck Display */}
       <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-x-4 gap-y-4 mb-20 items-center mx-auto">
-        {deck.map((card) => (
-          <div
-            key={card.id}
-            className="border w-48 h-32 border-blue-500 p-4 bg-gray-100 rounded-lg text-center cursor-pointer hover:bg-gray-200"
-            onClick={() => selectCard(card)} // Use selectCard to handle selection and removal
-          >
-            <p>{card.text}</p>
-          </div>
-        ))}
-      </div>
+  {deck.map((card) => (
+    <div
+      key={card.id}
+      className="border w-48 h-32 border-blue-500 bg-gray-100 rounded-lg text-center cursor-pointer hover:bg-gray-200 flex justify-center items-center"
+      onClick={() => selectCard(card)} // Use selectCard to handle selection and removal
+    >
+      <p>{card.text}</p>
+    </div>
+  ))}
+</div>
+
 
       {/* Selected Boxes */}
       <div className="text-xl w-full h-30">
         <div>
           <h2 className="text-center text-lg font-bold">
-            Select Correct option
+            Select Correct options
           </h2>
         </div>
 
@@ -368,7 +373,9 @@ const Level6 = ({ setCompletedLevels }) => {
       {showSuccessPopup && (
         <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
           <div className="bg-white rounded-lg shadow-lg p-6 w-full max-w-md text-center">
-            <h2 className="text-2xl font-bold text-green-600 mb-4">Correct!</h2>
+            <h2 className="text-2xl font-bold text-green-600 mb-4">
+              Your choices are correct
+            </h2>
             {codeSelection() ? (
               <button
                 onClick={() => handleCompleteLevel6()}
@@ -377,12 +384,26 @@ const Level6 = ({ setCompletedLevels }) => {
                 Hint: Neurological sign
               </button>
             ) : (
-              <button
-                onClick={() => handleCompleteLevel6()}
-                className="mt-4 bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600"
-              >
-                Hint: Sign of Bleeding
-              </button>
+              <>
+                <button
+                  onClick={() => {
+                    handleCompleteLevel6();
+                    navigate("/level11"); // Redirect to Level 11
+                  }}
+                  className="mt-4 bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600"
+                >
+                  Hint: Initial WBCT result shows clotted
+                </button>
+                <button
+                  onClick={() => {
+                    handleCompleteLevel6();
+                    navigate("/level12"); // Redirect to Level 12
+                  }}
+                  className="mt-4 bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600"
+                >
+                  Hint: Initial WBCT result shows not clotted
+                </button>
+              </>
             )}
           </div>
         </div>
@@ -392,8 +413,10 @@ const Level6 = ({ setCompletedLevels }) => {
       {showWrongPopup && (
         <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
           <div className="bg-white rounded-lg shadow-lg p-6 w-full max-w-md text-center">
-            <h2 className="text-2xl font-bold text-red-400 mb-4">Incorrect!</h2>
-            <p className="mb-6">You have selected the wrong sequence.</p>
+            <h2 className="text-2xl font-bold text-red-400 mb-4">
+              Your choices are incorrect
+            </h2>
+            {/* <p className="mb-6">You have selected the wrong sequence.</p> */}
             <button
               className="bg-red-400 text-white px-4 py-2 rounded-md"
               onClick={() => {

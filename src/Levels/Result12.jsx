@@ -9,34 +9,33 @@ const FinalResult12 = () => {
 
   // Map of level results to their display titles
   const levelTitles = {
-    level1Result: "Level 1",
-    level2Result: "Level 2",
-    level3Result: "Initial Management",
-    level4Result: "Sign of Envenomation",
-    level6Result: "AVS reaction",
-    level8Result: "Signs of bleeding",
-    level11Result: "Clotted",
+    level1Result: "Level 1",   
+    level2Result: "Initial Management",
+    level3Result: "Level 3",
+    level4Result: "Options available for management",
+    level6Result: "5 mins after starting AVS, patient develops Anaphylactoid. Options available for management",
+    // level8Result: "Signs of bleeding",
+    level11Result: "Options available when initial WBCT 20 comes clotted",
     level12Result: "Not clotted",
   };
 
   useEffect(() => {
     // Retrieve each level's result from localStorage
     const results = {
-      level1Result: JSON.parse(localStorage.getItem("level1Result")),
-      level2Result: JSON.parse(localStorage.getItem("level2TextResult")),
-      level3Result: JSON.parse(localStorage.getItem("level3Result")),
+      level1Result: JSON.parse(localStorage.getItem("level1Result")),     
+      level2Result: JSON.parse(localStorage.getItem("level2Result")),
+      level3Result: JSON.parse(localStorage.getItem("level3TextResult")),
       level4Result: JSON.parse(localStorage.getItem("level4Result")),
       level6Result: JSON.parse(localStorage.getItem("level6Result")),
-      level8Result: JSON.parse(localStorage.getItem("level8Result")),
+      // level8Result: JSON.parse(localStorage.getItem("level8Result")),
       level11Result: JSON.parse(localStorage.getItem("level11Result")),
       level12Result: JSON.parse(localStorage.getItem("level12Result")),
     };
 
-    // If the origin is `level8`, exclude `level11Result`
-    if (origin === "level8") {
+    // If the origin is `level6`, exclude `level11Result`
+    if (origin === "level6") {
       delete results.level11Result;
     }
-
     setAllResults(results);
   }, [origin]);
 
@@ -63,22 +62,21 @@ const FinalResult12 = () => {
         </span>
       </p> */}
 
-      <div className="w-full max-w-lg bg-white p-4 rounded-lg shadow-lg">
-        <ul>
-          {Object.entries(allResults).map(([level, result], index) => (
-            <li key={index} className="mb-4">
-              <h3 className="text-xl font-semibold text-gray-700">
-                {levelTitles[level] || level.replace("Result", "")}:
-              </h3>
-              {result ? (
-                <p className="text-gray-600">{result.join(", ")}</p>
-              ) : (
-                <p className="text-gray-400">No result</p>
-              )}
-            </li>
-          ))}
-        </ul>
-      </div>
+<div className="w-full max-w-lg bg-white p-4 rounded-lg shadow-lg">
+  <ul>
+    {Object.entries(allResults)
+      .filter(([_, result]) => result) // Filter out entries with null or undefined results
+      .map(([level, result], index) => (
+        <li key={index} className="mb-4">
+          <h3 className="text-xl font-semibold text-gray-700">
+            {levelTitles[level] || level.replace("Result", "")}:
+          </h3>
+          <p className="text-gray-600">{result.join(", ")}</p>
+        </li>
+      ))}
+  </ul>
+</div>
+
       <div className="flex space-x-2">
         <button
           onClick={handleHomeClick}
