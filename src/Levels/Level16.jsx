@@ -64,7 +64,9 @@ const Level16 = ({ setCompletedLevels }) => {
     { id: 3, text: "Transfer to referal hospital" },
     { id: 4, text: "10 vials AVS" },
     { id: 5, text: "Inj. Hydrocortis one" },
-    { id: 6, text: "Wait for 4 hours to respond" },
+    { id: 6, text: "AN maintainance dose" },
+    { id: 7, text: "Wait for 30 mins" },
+    { id: 8, text: "Wait for 1 hour" },
   ];
 
   // Correct sequence of cards
@@ -277,7 +279,7 @@ const Level16 = ({ setCompletedLevels }) => {
         </h2>
       </div>
 
-      <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-3 gap-x-4 gap-y-4 mb-20 items-center mx-auto">
+      <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-4 gap-x-4 gap-y-4 mb-20 items-center mx-auto">
         {deck.map((card) => (
           <div
             key={card.id}
@@ -328,7 +330,7 @@ const Level16 = ({ setCompletedLevels }) => {
           >
             <div className="bg-white rounded-lg shadow-lg p-6 w-full max-w-md text-center z-50">
               <h2 className="text-2xl font-bold text-green-600 mb-4">
-                Correct!
+                Your choices are correct
               </h2>
               <h2 className="text-xl mb-4">
                 To start the game again click on the button below
@@ -337,7 +339,7 @@ const Level16 = ({ setCompletedLevels }) => {
                 className="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600"
                 onClick={handleSuccessClose}
               >
-                Submit
+                Submit & Start Over
               </button>
             </div>
           </div>
@@ -348,9 +350,9 @@ const Level16 = ({ setCompletedLevels }) => {
           <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
             <div className="bg-white rounded-lg shadow-lg p-6 w-full max-w-md text-center">
               <h2 className="text-2xl font-bold text-red-400 mb-4">
-                Incorrect!
+                Your choices are incorrect
               </h2>
-              <p className="mb-6">You have selected the wrong sequence.</p>
+              {/* <p className="mb-6">You have selected the wrong sequence.</p> */}
               <button
                 className="bg-red-400 text-white px-4 py-2 rounded-md"
                 onClick={() => {

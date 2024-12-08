@@ -41,7 +41,7 @@ const Level9 = ({ setCompletedLevels }) => {
     setCompletedLevels(completedLevels);
 
     // Navigate to level 9
-    navigate("/level10");
+    // navigate("/level10");
   };
   useEffect(() => {
     // Save the current level path to localStorage
@@ -246,7 +246,7 @@ const Level9 = ({ setCompletedLevels }) => {
     if (isCorrect) {
       console.log("correct");
       setShowSuccessPopup(true);
-      localStorage.setItem("level5Result", JSON.stringify(selectedCards));
+      localStorage.setItem("level9Result", JSON.stringify(selectedCards));
     } else {
       console.log("incorrect");
       setShowWrongPopup(true); // Show wrong popup
@@ -297,7 +297,7 @@ const Level9 = ({ setCompletedLevels }) => {
       <div className="flex items-center justify-between w-full">
         {/* <h2 className="text-xl font-bold mx-auto mr-54">Choose card from deck</h2> */}
         <h2 className="text-2xl font-bold text-blue-400 mx-auto mr-50 mb-6">
-        Improving after 30 min:
+        Options available for management when Neurological signs are improving after 30 min:
         </h2>
       </div>
 
@@ -344,13 +344,13 @@ const Level9 = ({ setCompletedLevels }) => {
           <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
             <div className="bg-white rounded-lg shadow-lg p-6 w-full max-w-md text-center">
               <h2 className="text-2xl font-bold text-green-600 mb-4">
-                Correct!
+                Your choices are correct
               </h2>
               <button
                 className="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600"
                 onClick={handleSuccessClose} // Use the new function
               >
-                Hint: Improving
+                Situation: Improving
               </button>
             </div>
           </div>
@@ -361,9 +361,9 @@ const Level9 = ({ setCompletedLevels }) => {
           <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
             <div className="bg-white rounded-lg shadow-lg p-6 w-full max-w-md text-center">
               <h2 className="text-2xl font-bold text-red-400 mb-4">
-                Incorrect!
+                Your choices are incorrect
               </h2>
-              <p className="mb-6">You have selected the wrong sequence.</p>
+              {/* <p className="mb-6">You have selected the wrong sequence.</p> */}
               <button
                 className="bg-red-400 text-white px-4 py-2 rounded-md"
                 onClick={() => {

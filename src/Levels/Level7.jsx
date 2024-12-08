@@ -287,20 +287,20 @@ const Level7 = ({ setCompletedLevels }) => {
           <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
             <div className="bg-white rounded-lg shadow-lg p-6 w-full max-w-md text-center">
               <h2 className="text-2xl font-bold text-green-600 mb-4">
-                Correct!
+                Your choices are correct
               </h2>
               <button
                 onClick={() => handleSuccessClose("/level9")} // Navigate to Level 9
                 className="mt-4 bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600"
               >
-                Hint: Improving after 30 min
+                Situation 1: Improving after 30 min AN loading dose
               </button>
 
               <button
                 onClick={() => handleSuccessClose("/level10")} // Navigate to Level 10
                 className="mt-4 bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600"
               >
-                Hint: Not improving after 30 min
+                Situation 2: Not improving after 30 min AN loading dose
               </button>
             </div>
           </div>

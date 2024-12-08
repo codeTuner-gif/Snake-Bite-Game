@@ -328,15 +328,15 @@ const Level14 = ({ setCompletedLevels }) => {
           <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
             <div className="bg-white rounded-lg shadow-lg p-6 w-full max-w-md text-center">
               <h2 className="text-2xl font-bold text-green-600 mb-4">
-                Correct!
+                Your choices are correct
               </h2>
               <button
                 onClick={() => {
                   handleCompleteLevel14();
-                  navigate("/level9")}} // Redirect to Level 12
+                  navigate("/level13")}} // Redirect to Level 12
                 className="mt-4 bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600"
               >
-                Hint: Improving after 1 hour
+                Situation 1: Improvement seen after 1 hour
               </button>
 
               <button
@@ -345,7 +345,7 @@ const Level14 = ({ setCompletedLevels }) => {
                   navigate("/level16")}} // Redirect to Level 15
                 className="mt-4 bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600"
               >
-                Hint: Not improving after 1 hour 
+                Situation 1: Not improving after 1 hour 
               </button>
             </div>
           </div>
@@ -356,9 +356,9 @@ const Level14 = ({ setCompletedLevels }) => {
           <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
             <div className="bg-white rounded-lg shadow-lg p-6 w-full max-w-md text-center">
               <h2 className="text-2xl font-bold text-red-400 mb-4">
-                Incorrect!
+              Your choices are incorrect!
               </h2>
-              <p className="mb-6">You have selected the wrong sequence.</p>
+              {/* <p className="mb-6">You have selected the wrong sequence.</p> */}
               <button
                 className="bg-red-400 text-white px-4 py-2 rounded-md"
                 onClick={() => {

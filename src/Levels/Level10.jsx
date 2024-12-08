@@ -55,16 +55,17 @@ const Level10 = ({ setCompletedLevels }) => {
 
   const initialDeck = [
     { id: 1, text: "AN maintenance dose" },
-    { id: 2, text: "Wait 30 min for improvement" },
+    { id: 2, text: "Wait for another 30 min for improvement" },
     { id: 3, text: "AN loading dose" },
     { id: 4, text: "Wait for 1 hour" },
     { id: 5, text: "Transfer to referral hospital" },
+    { id: 6, text: "Ventilator Support" },
   ];
 
   // Correct sequence of cards
   const correctSequence = [
-    { id: 1, text: "AN maintenance dose" },
-    { id: 2, text: "Wait 30 min for improvement" },
+    // { id: 1, text: "AN maintenance dose" },
+    { id: 2, text: "Wait for another 30 min for improvement" },
   ];
 
   // Shuffle the deck when the component mounts
@@ -95,12 +96,15 @@ const Level10 = ({ setCompletedLevels }) => {
 
   useEffect(() => {
     if (
-      selectedCards1.text !== undefined &&
-      selectedCards2.text !== undefined
+      selectedCards1.text !== undefined 
+      // &&
+      // selectedCards2.text !== undefined
     ) {
       res();
     }
-  }, [selectedCards1, selectedCards2]);
+  }, [selectedCards1, 
+    // selectedCards2
+  ]);
 
   // useEffect(() => {
   //   if (countdown <= 0) {
@@ -206,7 +210,9 @@ const Level10 = ({ setCompletedLevels }) => {
 
   const res = () => {
     // Create an array of selected cards
-    const selectedCards = [selectedCards1.text, selectedCards2.text];
+    const selectedCards = [selectedCards1.text, 
+      // selectedCards2.text
+    ];
 
     // Create an array of correct cards
     const correctCards = correctSequence.map((card) => card.text);
@@ -239,18 +245,25 @@ const Level10 = ({ setCompletedLevels }) => {
     }
   };
 
-  const handleSuccessClose = () => {
+  const handleSuccessClose = (nextLevel) => {
     setShowSuccessPopup(false);
-    handleCompleteLevel10(); // This should now be modified to navigate to Level 13
+    // handleCompleteLevel10(); // This should now be modified to navigate to Level 13
     // You can directly navigate to Level 13 here if that is the desired behavior
-    navigate("/level14");
+    // navigate("/level14");
+    const completedLevels = JSON.parse(localStorage.getItem("completedLevels"));
+    completedLevels.level10 = true; // Mark Level 10 as completed
+    localStorage.setItem("completedLevels", JSON.stringify(completedLevels));
+    setCompletedLevels(completedLevels);
+
+    // Navigate to the next level
+    navigate(nextLevel);
   };
 
   const resetGame = () => {
     // setCountdown(1000);
     // Reset the selected cards
     setSelectedCards1({});
-    setSelectedCards2({});
+    // setSelectedCards2({});
     setDeck(initialDeck); // Reset to the first card in the deck
     setDeckIndex(0); // Reset the index to start from the first card
 
@@ -273,7 +286,7 @@ const Level10 = ({ setCompletedLevels }) => {
         </h2>
       </div>
 
-      <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-x-4 gap-y-4 mb-20 items-center mx-auto">
+      <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-3 gap-x-4 gap-y-4 mb-20 items-center mx-auto">
         {deck.map((card) => (
           <div
             key={card.id}
@@ -281,9 +294,11 @@ const Level10 = ({ setCompletedLevels }) => {
             onClick={() => {
               if (!selectedCards1.text) {
                 selectCard(card, setSelectedCards1);
-              } else if (!selectedCards2.text) {
-                selectCard(card, setSelectedCards2);
-              } else {
+              }
+              //  else if (!selectedCards2.text) {
+              //   selectCard(card, setSelectedCards2);
+              // } 
+              else {
                 console.log("Both selections are filled.");
               }
             }}
@@ -302,7 +317,9 @@ const Level10 = ({ setCompletedLevels }) => {
         </div>
 
         <div className="flex flex-wrap justify-center gap-8 mt-4">
-          {[selectedCards1, selectedCards2].map((card, idx) => (
+          {[selectedCards1, 
+          // selectedCards2
+        ].map((card, idx) => (
             <div
               key={idx}
               className="border-2 border-blue-400 w-60 h-32 flex items-center justify-center bg-gray-100 rounded-lg shadow-md text-gray-700 transition-transform transform hover:scale-105"
@@ -321,13 +338,20 @@ const Level10 = ({ setCompletedLevels }) => {
           <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
             <div className="bg-white rounded-lg shadow-lg p-6 w-full max-w-md text-center">
               <h2 className="text-2xl font-bold text-green-600 mb-4">
-                Correct!
+                You have made correct choice
               </h2>
+              <p>Choose an option from below</p>
               <button
-                className="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600"
-                onClick={handleSuccessClose} // Use the new function
+                className="mt-4 bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600"
+                onClick={() => handleSuccessClose("/level13")} // Use the new function
               >
-                Hint: No improvement at 1 hour
+                Situation 1: Improvement seen after 1 hour
+              </button>
+              <button
+                className="mt-4 bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600"
+                onClick={() => handleSuccessClose("/level14")} // Use the new function
+              >
+                Situation 2: No improvement after 1 hour
               </button>
             </div>
           </div>
@@ -338,9 +362,9 @@ const Level10 = ({ setCompletedLevels }) => {
           <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
             <div className="bg-white rounded-lg shadow-lg p-6 w-full max-w-md text-center">
               <h2 className="text-2xl font-bold text-red-400 mb-4">
-                Incorrect!
+                Your choices are incorrect
               </h2>
-              <p className="mb-6">You have selected the wrong sequence.</p>
+              {/* <p className="mb-6">You have selected the wrong sequence.</p> */}
               <button
                 className="bg-red-400 text-white px-4 py-2 rounded-md"
                 onClick={() => {
