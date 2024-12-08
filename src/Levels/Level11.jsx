@@ -320,7 +320,7 @@ const Level11 = ({ setCompletedLevels }) => {
       <div className="flex items-center justify-between w-full">
         {/* <h2 className="text-xl font-bold mx-auto mr-54">Choose card from deck</h2> */}
         <h2 className="text-2xl font-bold text-blue-400 mx-auto mr-50 mb-6">
-          Options available when initial WBCT 20 comes clotted
+          Options available when initial WBCT comes clotted
         </h2>
       </div>
 

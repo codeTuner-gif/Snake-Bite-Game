@@ -104,7 +104,7 @@ const Level3 = ({ setCompletedLevels }) => {
     {
       id: 21,
       text: "Unexplained throat/chest/joint pain",
-      code: "X",
+      code: "N",
       type: "history",
     },
     { id: 22, text: "Salivation, Vomiting", code: "X", type: "history" },
@@ -399,24 +399,24 @@ const Level3 = ({ setCompletedLevels }) => {
       <div className="w-full h-auto flex justify-center items-center gap-4">
         <button
           onClick={() => setSelectedCategory("history")}
-          className={`px-4 py-2 rounded-lg text-white ${
+          className={`px-4 py-2 rounded-lg text-white font-bold ${
             selectedCategory === "history" ? "bg-blue-700" : "bg-blue-500"
           } hover:bg-blue-600 relative`}
         >
           History
           {selectedCategory === "history" && (
-            <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 h-1 w-10 bg-white rounded-md"></div>
+            <div className="absolute bottom-1 left-1/2 transform -translate-x-1/2 h-1 w-10 bg-white rounded-md"></div>
           )}
         </button>
         <button
           onClick={() => setSelectedCategory("examination")}
-          className={`px-4 py-2 rounded-lg text-white ${
+          className={`px-4 py-2 rounded-lg text-white font-bold ${
             selectedCategory === "examination" ? "bg-blue-700" : "bg-blue-500"
           } hover:bg-blue-600 relative`}
         >
           Examination
           {selectedCategory === "examination" && (
-            <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 h-1 w-10 bg-white rounded-md"></div>
+            <div className="absolute bottom-1 left-1/2 transform -translate-x-1/2 h-1 w-20 bg-white rounded-md"></div>
           )}
         </button>
       </div>

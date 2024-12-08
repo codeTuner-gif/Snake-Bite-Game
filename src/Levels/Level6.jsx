@@ -392,7 +392,7 @@ const Level6 = ({ setCompletedLevels }) => {
                   }}
                   className="mt-4 bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600"
                 >
-                  Hint: Initial WBCT result shows clotted
+                  Situation 1: Initial WBCT result shows clotted
                 </button>
                 <button
                   onClick={() => {
@@ -401,7 +401,7 @@ const Level6 = ({ setCompletedLevels }) => {
                   }}
                   className="mt-4 bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600"
                 >
-                  Hint: Initial WBCT result shows not clotted
+                  Situation 2: Initial WBCT result shows not clotted
                 </button>
               </>
             )}
