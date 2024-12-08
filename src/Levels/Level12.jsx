@@ -274,7 +274,7 @@ const Level12 = ({ setCompletedLevels }) => {
       <div className="flex items-center justify-between w-full">
         {/* <h2 className="text-xl font-bold mx-auto mr-54">Choose card from deck</h2> */}
         <h2 className="text-2xl font-bold text-blue-400 mx-auto mr-50 mb-6">
-          Not clotted:
+          Options available: When WBCT comes Not Clotted in any occasion
         </h2>
       </div>
 
@@ -328,7 +328,7 @@ const Level12 = ({ setCompletedLevels }) => {
           <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
             <div className="bg-white rounded-lg shadow-lg p-6 w-full max-w-md text-center">
               <h2 className="text-2xl font-bold text-green-600 mb-4">
-                Correct!
+                Your choices are correct
               </h2>
               <h2 className="text-xl mb-4">
                 To start the game again click on the button below
@@ -337,7 +337,7 @@ const Level12 = ({ setCompletedLevels }) => {
                 className="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600"
                 onClick={handleSuccessClose}
               >
-                Submit
+                Submit & Start Over
               </button>
             </div>
           </div>

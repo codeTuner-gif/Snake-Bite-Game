@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { FaClock, FaQuestionCircle } from "react-icons/fa";
+import backgroundImage from "../assets/images/snake1.jpg";
 
 const Level1 = ({ setCompletedLevels }) => {
   const location = useLocation();
@@ -261,11 +262,13 @@ const Level1 = ({ setCompletedLevels }) => {
   };
 
   return (
-      <div className="p-4 sm:p-6 flex flex-col items-center relative">
+      <div className="p-4 sm:p-6 flex flex-col items-center relative w-full h-full overflow-auto"
+      style={{ backgroundImage: `url(${backgroundImage})`, backgroundSize: "cover" }}
+      >
         {/* Icons on the top-right corner */}
         <div className="absolute top-4 right-4 flex items-center gap-4">
           <div className="flex items-center gap-2 cursor-pointer">
-            <FaClock className="text-blue-500 text-xl sm:text-2xl" />
+            <FaClock className="text-amber-950 text-xl sm:text-2xl" />
         
        { /*<h2 className="text-xl text-blue-600 font-bold">
            {countdown} s
@@ -273,12 +276,12 @@ const Level1 = ({ setCompletedLevels }) => {
  
           </div>
           <div className="flex items-center gap-2 cursor-pointer">
-            <FaQuestionCircle className="text-blue-500 text-xl sm:text-2xl" />
-            <span className="text-blue-500 text-sm sm:text-base">Help</span>
+            <FaQuestionCircle className="text-amber-950 text-xl sm:text-2xl" />
+            <span className="text-amber-950 text-sm sm:text-base">Help</span>
           </div>
         </div>
   
-      <h2 className="text-2xl font-bold text-blue-400 mx-auto">
+      <h2 className="text-2xl font-bold text-slate-50 mx-auto">
         You have come across a patient of Snake bite. Now choose appropriate actions
       </h2>
 
@@ -310,12 +313,12 @@ const Level1 = ({ setCompletedLevels }) => {
       {/* Selected Boxes */}
       <div className="text-xl w-full h-30">
         <div>
-          <h2 className="text-center text-lg font-bold">
+          <h2 className="text-center text-3xl font-bold text-slate-50">
             Select Correct options
           </h2>
         </div>
 
-        <div className="flex flex-wrap justify-center gap-8 mt-4">
+        <div className="flex flex-wrap justify-center gap-8 mt-10">
           {[selectedCards1, selectedCards2, selectedCards3, selectedCards4].map(
             (card, idx) => (
               <div

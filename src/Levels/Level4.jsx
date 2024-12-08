@@ -15,6 +15,7 @@ const Level4 = ({ setCompletedLevels }) => {
   const [showWrongPopup, setShowWrongPopup] = useState(false);
   const [result, SetResult] = useState([]);
   const [level3Selection, setLevel3Selection] = useState(null);
+  const [heading, setHeading] = useState("");
 
   const handleCompleteLevel4 = (level) => {
     // Mark level 4 as completed
@@ -148,6 +149,20 @@ const Level4 = ({ setCompletedLevels }) => {
     const shuffledDeck = shuffle([...initialDeck]);
     setDeck(shuffledDeck);
   }, [location]);
+
+  useEffect(() => {
+    // Retrieve the selection from Level 3 from localStorage
+    const level3Result = JSON.parse(localStorage.getItem("level3Result")) || [];
+
+    // Determine the heading based on the code selection
+    if (level3Result.includes("H")) {
+      setHeading("Options available for management (Haemotoxic envenomation selected)");
+    } else if (level3Result.includes("N")) {
+      setHeading("Options available for management (Neurotoxic envenomation selected)");
+    } else {
+      setHeading("Options available for management");
+    }
+  }, []);
 
   // Shuffle function
   // const shuffle = (array) => {
@@ -287,30 +302,29 @@ const Level4 = ({ setCompletedLevels }) => {
       <div className="flex items-center justify-between w-full">
         {/* <h2 className="text-xl font-bold mx-auto mr-54">Choose card from deck</h2> */}
         <h2 className="text-2xl font-bold text-blue-400 mx-auto mr-50 mb-6">
-          Options available for management (Haemotoxic envenomation selected)  
+          {heading} {/* Render the heading dynamically */}
         </h2>
       </div>
 
       <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-4 gap-x-4 gap-y-4 mb-20 items-center mx-auto">
-  {deck.map((card) => (
-    <div
-      key={card.id}
-      className="border w-48 h-32 border-blue-500 bg-gray-100 rounded-lg text-center cursor-pointer hover:bg-gray-200 flex justify-center items-center"
-      onClick={() => {
-        if (!selectedCards1.text) {
-          selectCard(card, setSelectedCards1);
-        } else if (!selectedCards2.text) {
-          selectCard(card, setSelectedCards2);
-        } else {
-          console.log("Both selections are filled.");
-        }
-      }}
-    >
-      <p>{card.text}</p>
-    </div>
-  ))}
-</div>
-
+        {deck.map((card) => (
+          <div
+            key={card.id}
+            className="border w-48 h-32 border-blue-500 bg-gray-100 rounded-lg text-center cursor-pointer hover:bg-gray-200 flex justify-center items-center"
+            onClick={() => {
+              if (!selectedCards1.text) {
+                selectCard(card, setSelectedCards1);
+              } else if (!selectedCards2.text) {
+                selectCard(card, setSelectedCards2);
+              } else {
+                console.log("Both selections are filled.");
+              }
+            }}
+          >
+            <p>{card.text}</p>
+          </div>
+        ))}
+      </div>
 
       {/* Selected Boxes */}
       <div className="text-xl w-full h-30">
@@ -342,7 +356,9 @@ const Level4 = ({ setCompletedLevels }) => {
       {showSuccessPopup && (
         <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
           <div className="bg-white rounded-lg shadow-lg p-6 w-full max-w-md text-center">
-            <h2 className="text-2xl font-bold text-green-600 mb-4">Your choices are correct</h2>
+            <h2 className="text-2xl font-bold text-green-600 mb-4">
+              Your choices are correct
+            </h2>
             {codeSelection && ( // Check if codeSelection is valid
               <button
                 onClick={() => handleCompleteLevel4("/level6")} // Ensure this function navigates correctly
@@ -361,7 +377,9 @@ const Level4 = ({ setCompletedLevels }) => {
       {showWrongPopup && (
         <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
           <div className="bg-white rounded-lg shadow-lg p-6 w-full max-w-md text-center">
-            <h2 className="text-2xl font-bold text-red-400 mb-4">Your choices are incorrect</h2>
+            <h2 className="text-2xl font-bold text-red-400 mb-4">
+              Your choices are incorrect
+            </h2>
             {/* <p className="mb-6">You have selected the wrong sequence.</p> */}
             <button
               className="bg-red-400 text-white px-4 py-2 rounded-md"

@@ -4,30 +4,49 @@ import { useLocation, useNavigate } from "react-router-dom";
 const FinalResult13 = () => {
   const location = useLocation();
   const navigate = useNavigate();
-  
+
   const pathA = ["level1Result", "level2Result", "level3Result", "level4Result", "level6Result", "level7Result", "level9Result", "level13Result"];
-  const pathB = ["level1Result", "level2Result", "level3Result", "level4Result", "level6Result", "level7Result", "level10Result", "level14Result", "level9Result", "level13Result"];
-  
+  const pathB = ["level1Result", "level2Result", "level3Result", "level4Result", "level6Result", "level7Result", "level10Result", "level9Result", "level13Result"];
+  const pathC = ["level1Result", "level2Result", "level3Result", "level4Result", "level6Result", "level7Result", "level10Result", "level9Result", "level14Result", "level13Result"];
+
   const [allResults, setAllResults] = useState({});
   
-  const isPathB = location.state?.isPathB || false;
+  const isPathB = location.state?.isPathB ?? false;
+  const isPathC = location.state?.isPathC ?? false;
+  // const isPathA = location.state?.isPathA ?? false;
+
+  const useDisplayPath = (isPathB, isPathC) => {
+    return React.useMemo(() => {
+      if (isPathC) return pathC;
+      if (isPathB) return pathB;
+      return pathA;
+    }, [isPathB, isPathC]);
+  };
   
+  // Usage in the component
+  const displayPath = useDisplayPath(isPathB, isPathC);
+  
+  
+  
+
+  
+
   const levelTitles = {
-    level1Result: "Level 1",    
+    level1Result: "Level 1",
     level2Result: "Initial Management",
-    level3Result: "Level 3", 
+    level3Result: "Level 3",
     level4Result: "Options available for management",
     level6Result: "5 mins after starting AVS, patient develops Anaphylactoid. Options available for management",
     level7Result: "Neurological signs",
     level9Result: "Improving after 30 min",
     level10Result: "Not improving after 30 min",
     level13Result: "Improving",
-    level14Result: "No improvement at 1 hour"
+    level14Result: "Not improving",
   };
 
   useEffect(() => {
     const results = {
-      level1Result: JSON.parse(localStorage.getItem("level1Result")),      
+      level1Result: JSON.parse(localStorage.getItem("level1Result")),
       level2Result: JSON.parse(localStorage.getItem("level2Result")),
       level3Result: JSON.parse(localStorage.getItem("level3TextResult")),
       level4Result: JSON.parse(localStorage.getItem("level4Result")),
@@ -38,25 +57,25 @@ const FinalResult13 = () => {
       level13Result: JSON.parse(localStorage.getItem("level13Result")),
       level14Result: JSON.parse(localStorage.getItem("level14Result")),
     };
+
+    console.log("Results from localStorage:", results);
     setAllResults(results);
   }, []);
 
   const handleHomeClick = () => {
-    navigate("/"); // Redirect to the home page
+    localStorage.clear();
+    navigate("/");
   };
 
-  const displayPath = isPathB ? pathB : pathA;
-
   const handleExitClick = () => {
-    localStorage.clear(); // Clear all data from localStorage
-    // Redirects to the browser's home page
-    window.location.href = "https://google.com";;
+    localStorage.clear();
+    window.location.href = "https://google.com";
   };
 
   return (
     <div className="p-6 flex flex-col items-center">
       <h2 className="text-2xl font-bold text-blue-500 mb-6">Final Results</h2>
-      <p className="text-lg text-gray-600 mb-4 font-semibold" >
+      <p className="text-lg text-gray-600 mb-4 font-semibold">
         The options you selected since Level 1
       </p>
 
@@ -70,7 +89,7 @@ const FinalResult13 = () => {
               {allResults[levelKey] ? (
                 <p className="text-gray-600">{allResults[levelKey].join(", ")}</p>
               ) : (
-                <p className="text-gray-400">No result</p>
+                <p className="text-gray-400">No result found</p>
               )}
             </li>
           ))}
