@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { FaClock, FaQuestionCircle } from "react-icons/fa";
+import backgroundImage from "../assets/images/snake.jpg";
 
 const Level1 = ({ setCompletedLevels }) => {
   const location = useLocation();
@@ -261,7 +262,9 @@ const Level1 = ({ setCompletedLevels }) => {
   };
 
   return (
-      <div className="p-4 sm:p-6 flex flex-col items-center relative">
+      <div className="p-4 sm:p-6 flex flex-col items-center relative"
+      style={{ backgroundImage: `url(${backgroundImage})`, backgroundSize: "auto" }}
+      >
         {/* Icons on the top-right corner */}
         <div className="absolute top-4 right-4 flex items-center gap-4">
           <div className="flex items-center gap-2 cursor-pointer">
