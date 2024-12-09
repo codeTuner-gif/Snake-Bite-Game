@@ -350,7 +350,7 @@ const Level9 = ({ setCompletedLevels }) => {
                 className="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600"
                 onClick={handleSuccessClose} // Use the new function
               >
-                Situation: Improving
+                Proceed to Next Level
               </button>
             </div>
           </div>

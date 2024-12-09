@@ -324,7 +324,7 @@ const Level6 = ({ setCompletedLevels }) => {
         {/* <h2 className="text-xl font-bold mx-auto mr-54">Choose card from deck</h2> */}
         <h2 className="text-2xl font-bold text-blue-400 mx-auto mr-50 text-center">
           {/* AVS reaction: */}
-          5 mins after starting AVS, patient develops Anaphylactoid. <br />{" "}
+          5 mins after starting AVS, patient develops Anaphylactoid reactions.<br />{" "}
           Options available for management:
         </h2>
       </div>
