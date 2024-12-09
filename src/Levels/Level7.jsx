@@ -248,7 +248,7 @@ const Level7 = ({ setCompletedLevels }) => {
     <div className="p-6 flex flex-col items-center">
     <div className="flex items-center justify-between w-full">
       <h2 className="text-2xl font-bold text-blue-400 mx-auto mr-50 mb-6">
-        Neurological signs(Neurotoxic Envenomation):
+        Persistent Neurological signs despite 10 vials of AVS. Options available for management (Neurotoxic Envenomation):
       </h2>
     </div>
 
@@ -293,14 +293,14 @@ const Level7 = ({ setCompletedLevels }) => {
                 onClick={() => handleSuccessClose("/level9")} // Navigate to Level 9
                 className="mt-4 bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600"
               >
-                Situation 1: Improving after 30 min AN loading dose
+                Situation 1: Improving after 30 min
               </button>
 
               <button
                 onClick={() => handleSuccessClose("/level10")} // Navigate to Level 10
                 className="mt-4 bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600"
               >
-                Situation 2: Not improving after 30 min AN loading dose
+                Situation 2: Not improving after 30 min
               </button>
             </div>
           </div>

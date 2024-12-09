@@ -156,9 +156,9 @@ const Level4 = ({ setCompletedLevels }) => {
 
     // Determine the heading based on the code selection
     if (level3Result.includes("H")) {
-      setHeading("Options available for management (Haemotoxic envenomation selected)");
+      setHeading("Options available for management, Select from below options (Haemotoxic envenomation selected)");
     } else if (level3Result.includes("N")) {
-      setHeading("Options available for management (Neurotoxic envenomation selected)");
+      setHeading("Options available for management, Select from below options (Neurotoxic envenomation selected)");
     } else {
       setHeading("Options available for management");
     }
