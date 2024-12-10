@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { FaClock, FaQuestionCircle } from "react-icons/fa";
-import backgroundImage from "../assets/images/snake1.jpg";
+import backgroundImage from "../assets/images/snake11.png";
 
 const Level1 = ({ setCompletedLevels }) => {
   const location = useLocation();
