@@ -262,53 +262,56 @@ const Level1 = ({ setCompletedLevels }) => {
   };
 
   return (
-      <div className="p-4 sm:p-6 flex flex-col items-center relative w-full h-full overflow-auto"
-      style={{ backgroundImage: `url(${backgroundImage})`, backgroundSize: "cover" }}
-      >
-        {/* Icons on the top-right corner */}
-        <div className="absolute top-4 right-4 flex items-center gap-4">
-          <div className="flex items-center gap-2 cursor-pointer">
-            <FaClock className="text-amber-950 text-xl sm:text-2xl" />
-        
-       { /*<h2 className="text-xl text-blue-600 font-bold">
+    <div
+      className="p-4 sm:p-6 flex flex-col items-center relative w-full h-full overflow-auto"
+      style={{
+        backgroundImage: `url(${backgroundImage})`,
+        backgroundSize: "cover",
+      }}
+    >
+      {/* Icons on the top-right corner */}
+      <div className="absolute top-4 right-4 flex items-center gap-4">
+        <div className="flex items-center gap-2 cursor-pointer">
+          <FaClock className="text-amber-950 text-xl sm:text-2xl" />
+
+          {/*<h2 className="text-xl text-blue-600 font-bold">
            {countdown} s
           </h2>*/}
- 
-          </div>
-          <div className="flex items-center gap-2 cursor-pointer">
-            <FaQuestionCircle className="text-amber-950 text-xl sm:text-2xl" />
-            <span className="text-amber-950 text-sm sm:text-base">Help</span>
-          </div>
         </div>
-  
+        <div className="flex items-center gap-2 cursor-pointer">
+          <FaQuestionCircle className="text-amber-950 text-xl sm:text-2xl" />
+          <span className="text-amber-950 text-sm sm:text-base">Help</span>
+        </div>
+      </div>
+
       <h2 className="text-2xl font-bold text-slate-50 mx-auto">
-        You have come across a patient of Snake bite. Now choose appropriate actions
+        You have come across a patient of Snake bite. Now choose appropriate
+        actions
       </h2>
 
       {/* Deck Display */}
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-5 gap-4 mb-10 items-center w-full max-w-screen-md mx-auto">
-  {deck.map((card) => (
-    <div
-      key={card.id}
-      className="border w-full h-20 sm:h-24 md:h-32 border-blue-500 p-2 sm:p-4 bg-gray-100 rounded-lg text-center cursor-pointer hover:bg-gray-200 flex justify-center items-center"
-      onClick={() =>
-        selectCard(
-          card,
-          !selectedCards1.text
-            ? setSelectedCards1
-            : !selectedCards2.text
-            ? setSelectedCards2
-            : !selectedCards3.text
-            ? setSelectedCards3
-            : setSelectedCards4
-        )
-      }
-    >
-      <p className="text-sm sm:text-md">{card.text}</p>
-    </div>
-  ))}
-</div>
-
+        {deck.map((card) => (
+          <div
+            key={card.id}
+            className="border w-full h-20 sm:h-24 md:h-32 border-blue-500 p-2 sm:p-4 bg-gray-100 rounded-lg text-center cursor-pointer hover:bg-gray-200 flex justify-center items-center"
+            onClick={() =>
+              selectCard(
+                card,
+                !selectedCards1.text
+                  ? setSelectedCards1
+                  : !selectedCards2.text
+                  ? setSelectedCards2
+                  : !selectedCards3.text
+                  ? setSelectedCards3
+                  : setSelectedCards4
+              )
+            }
+          >
+            <p className="text-sm sm:text-md">{card.text}</p>
+          </div>
+        ))}
+      </div>
 
       {/* Selected Boxes */}
       <div className="text-xl w-full h-30">
@@ -342,7 +345,6 @@ const Level1 = ({ setCompletedLevels }) => {
           )}
         </div>
       </div>
-      
 
       {/* Success Popup for Correct Sequence */}
       {showSuccessPopup && (
