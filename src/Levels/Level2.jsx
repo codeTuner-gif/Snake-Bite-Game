@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import backgroundImage from "../assets/images/snake11.png";
+import { FaClock, FaQuestionCircle } from "react-icons/fa";
 
 const Level2 = ({ setCompletedLevels }) => {
   const navigate = useNavigate();
   const [level2Selection, setLevel2Selection] = useState(null);
   const [deck, setDeck] = useState([]);
-  const [deckIndex, setDeckIndex] = useState(null); 
+  const [deckIndex, setDeckIndex] = useState(null);
   const [selectedCards1, setSelectedCards1] = useState({});
   const [selectedCards2, setSelectedCards2] = useState({});
   const [selectedCards3, setSelectedCards3] = useState({});
@@ -81,7 +83,13 @@ const Level2 = ({ setCompletedLevels }) => {
     ) {
       checkSequence();
     }
-  }, [selectedCards1, selectedCards2, selectedCards3, selectedCards4, selectedCards5]);
+  }, [
+    selectedCards1,
+    selectedCards2,
+    selectedCards3,
+    selectedCards4,
+    selectedCards5,
+  ]);
 
   const checkSequence = () => {
     const selectedCards = [
@@ -144,46 +152,71 @@ const Level2 = ({ setCompletedLevels }) => {
   // };
 
   return (
-    <div className="p-6 flex flex-col items-center">
-      <h2 className="text-2xl font-bold text-blue-400 mx-auto">How would you like to manage the patient initially?</h2>
+    <div
+      className="p-4 sm:p-6 flex flex-col items-center relative w-full h-full overflow-auto"
+      style={{
+        backgroundImage: `url(${backgroundImage})`,
+        backgroundSize: "cover",
+      }}
+    >
+      {/* Icons on the top-right corner */}
+      <div className="absolute top-4 right-4 flex items-center gap-4">
+        <div className="flex items-center gap-2 cursor-pointer">
+          <FaClock className="text-amber-950 text-xl sm:text-2xl" />
+
+          {/*<h2 className="text-xl text-blue-600 font-bold">
+           {countdown} s
+          </h2>*/}
+        </div>
+        <div className="flex items-center gap-2 cursor-pointer">
+          <FaQuestionCircle className="text-amber-950 text-xl sm:text-2xl" />
+          <span className="text-amber-950 text-sm sm:text-base">Help</span>
+        </div>
+      </div>
+      <h2 className="text-2xl font-bold text-blue-400 mx-auto">
+        How would you like to manage the patient initially?
+      </h2>
 
       <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-4 mb-20">
-  {deck.map((card) => (
-    <div
-      key={card.id}
-      className="border w-48 h-32 border-blue-500 p-4 bg-gray-100 rounded-lg text-center cursor-pointer hover:bg-gray-200 flex justify-center items-center"
-      onClick={() =>
-        selectCard(
-          card,
-          !selectedCards1.text
-            ? setSelectedCards1
-            : !selectedCards2.text
-            ? setSelectedCards2
-            : !selectedCards3.text
-            ? setSelectedCards3
-            : !selectedCards4.text
-            ? setSelectedCards4
-            : setSelectedCards5
-        )
-      }
-    >
-      <p>{card.text}</p>
-    </div>
-  ))}
-</div>
-
+        {deck.map((card) => (
+          <div
+            key={card.id}
+            className="border w-48 h-32 border-blue-500 p-4 bg-gray-100 rounded-lg text-center cursor-pointer hover:bg-gray-200 flex justify-center items-center"
+            onClick={() =>
+              selectCard(
+                card,
+                !selectedCards1.text
+                  ? setSelectedCards1
+                  : !selectedCards2.text
+                  ? setSelectedCards2
+                  : !selectedCards3.text
+                  ? setSelectedCards3
+                  : !selectedCards4.text
+                  ? setSelectedCards4
+                  : setSelectedCards5
+              )
+            }
+          >
+            <p>{card.text}</p>
+          </div>
+        ))}
+      </div>
 
       <div className="flex flex-wrap justify-center gap-8 mt-4">
-        {[selectedCards1, selectedCards2, selectedCards3, selectedCards4, selectedCards5].map(
-          (card, idx) => (
-            <div
-              key={idx}
-              className="border-2 border-blue-400 w-60 h-32 flex items-center justify-center bg-gray-100 rounded-lg shadow-md text-gray-700"
-            >
-              <p className="text-md text-center">{card.text}</p>
-            </div>
-          )
-        )}
+        {[
+          selectedCards1,
+          selectedCards2,
+          selectedCards3,
+          selectedCards4,
+          selectedCards5,
+        ].map((card, idx) => (
+          <div
+            key={idx}
+            className="border-2 border-blue-400 w-60 h-32 flex items-center justify-center bg-gray-100 rounded-lg shadow-md text-gray-700"
+          >
+            <p className="text-md text-center">{card.text}</p>
+          </div>
+        ))}
       </div>
 
       {/* {showSuccessPopup && (
@@ -214,7 +247,9 @@ const Level2 = ({ setCompletedLevels }) => {
       {showSuccessPopup && (
         <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
           <div className="bg-white rounded-lg shadow-lg p-6 w-full max-w-md text-center">
-            <h2 className="text-2xl font-bold text-green-600 mb-4">Your choices are correct</h2>
+            <h2 className="text-2xl font-bold text-green-600 mb-4">
+              Your choices are correct
+            </h2>
             <button
               onClick={() => handleCompleteLevel2("/level3")}
               className="mt-4 bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600"
@@ -228,7 +263,9 @@ const Level2 = ({ setCompletedLevels }) => {
       {showWrongPopup && (
         <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
           <div className="bg-white rounded-lg shadow-lg p-6 w-full max-w-md text-center">
-            <h2 className="text-2xl font-bold text-red-400 mb-4">Your choices are incorrect</h2>
+            <h2 className="text-2xl font-bold text-red-400 mb-4">
+              Your choices are incorrect
+            </h2>
             {/* <p className="mb-6">You have selected the wrong sequence.</p> */}
             <button
               className="bg-red-400 text-white px-4 py-2 rounded-md"

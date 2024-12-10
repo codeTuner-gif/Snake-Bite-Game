@@ -3,6 +3,8 @@
 import React, { useState, useEffect } from "react";
 import CustomAlert from "./CustomAlert"; // Importing the CustomAlert component
 import { useLocation, useNavigate } from "react-router-dom";
+import { FaClock, FaQuestionCircle } from "react-icons/fa";
+import backgroundImage from "../assets/images/snake11.png";
 
 const Level10 = ({ setCompletedLevels }) => {
   const navigate = useNavigate();
@@ -278,7 +280,27 @@ const Level10 = ({ setCompletedLevels }) => {
   // };
 
   return (
-    <div className="p-6 flex flex-col items-center">
+    <div
+      className="p-4 sm:p-6 flex flex-col items-center relative w-full h-full overflow-auto"
+      style={{
+        backgroundImage: `url(${backgroundImage})`,
+        backgroundSize: "cover",
+      }}
+    >
+      {/* Icons on the top-right corner */}
+      <div className="absolute top-4 right-4 flex items-center gap-4">
+        <div className="flex items-center gap-2 cursor-pointer">
+          <FaClock className="text-amber-950 text-xl sm:text-2xl" />
+
+          {/*<h2 className="text-xl text-blue-600 font-bold">
+           {countdown} s
+          </h2>*/}
+        </div>
+        <div className="flex items-center gap-2 cursor-pointer">
+          <FaQuestionCircle className="text-amber-950 text-xl sm:text-2xl" />
+          <span className="text-amber-950 text-sm sm:text-base">Help</span>
+        </div>
+      </div>
       <div className="flex items-center justify-between w-full">
         {/* <h2 className="text-xl font-bold mx-auto mr-54">Choose card from deck</h2> */}
         <h2 className="text-2xl font-bold text-blue-400 mx-auto mr-50 mb-6">

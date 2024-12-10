@@ -7,9 +7,9 @@ const FinalResult5 = () => {
 
   // Define custom titles for levels
   const levelTitles = {
-    level1Result: "Level 1",    
+    level1Result: "You have come across a patient of Snake bite",    
     level2Result: "Initial Management", 
-    level3Result: "Level 3",
+    level3Result: "Various findings related to Snake bite considering one type of envenomation",
     level5Result: "No sign of Envenomation",
   };
 

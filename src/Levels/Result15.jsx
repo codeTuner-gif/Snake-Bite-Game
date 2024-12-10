@@ -7,9 +7,9 @@ const FinalResult15 = () => {
 
   // Map of level results to their display titles
   const levelTitles = {
-    level1Result: "Level 1",    
+    level1Result: "You have come across a patient of Snake bite",    
     level2Result: "Initial Management", 
-    level3Result: "Level 3",
+    level3Result: "Various findings related to Snake bite considering one type of envenomation",
     level4Result: "Options available for management",
     level6Result: "5 mins after starting AVS, patient develops Anaphylactoid. Options available for management",
     // level8Result: "Signs of bleeding",
