@@ -422,8 +422,8 @@ const Level3 = ({ setCompletedLevels }) => {
         <button
           onClick={() => setSelectedCategory("history")}
           className={`px-4 py-2 rounded-lg text-white font-bold ${
-            selectedCategory === "history" ? "bg-blue-700" : "bg-blue-500"
-          } hover:bg-blue-600 relative`}
+            selectedCategory === "history" ? "bg-amber-950" : "bg-amber-750"
+          } hover:bg-amber-950 relative`}
         >
           History
           {selectedCategory === "history" && (
@@ -433,8 +433,8 @@ const Level3 = ({ setCompletedLevels }) => {
         <button
           onClick={() => setSelectedCategory("examination")}
           className={`px-4 py-2 rounded-lg text-white font-bold ${
-            selectedCategory === "examination" ? "bg-blue-700" : "bg-blue-500"
-          } hover:bg-blue-600 relative`}
+            selectedCategory === "examination" ? "bg-amber-950" : "bg-amber-750"
+          } hover:bg-amber-950 relative`}
         >
           Examination
           {selectedCategory === "examination" && (
