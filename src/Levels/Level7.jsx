@@ -257,19 +257,19 @@ const Level7 = ({ setCompletedLevels }) => {
       {/* Icons on the top-right corner */}
       <div className="absolute top-4 right-4 flex items-center gap-4">
         <div className="flex items-center gap-2 cursor-pointer">
-          <FaClock className="text-amber-950 text-xl sm:text-2xl" />
+          <FaClock className="text-slate-50 text-xl sm:text-2xl" />
 
           {/*<h2 className="text-xl text-blue-600 font-bold">
            {countdown} s
           </h2>*/}
         </div>
         <div className="flex items-center gap-2 cursor-pointer">
-          <FaQuestionCircle className="text-amber-950 text-xl sm:text-2xl" />
-          <span className="text-amber-950 text-sm sm:text-base">Help</span>
+          <FaQuestionCircle className="text-slate-50 text-xl sm:text-2xl" />
+          <span className="text-slate-50 text-sm sm:text-base">Help</span>
         </div>
       </div>
     <div className="flex items-center justify-between w-full">
-      <h2 className="text-2xl font-bold text-blue-400 mx-auto mr-50 mb-6">
+      <h2 className="text-2xl font-bold text-slate-50 mx-auto mr-50 mb-6">
         Persistent Neurological signs despite 10 vials of AVS. Options available for management (Neurotoxic Envenomation):
       </h2>
     </div>
@@ -291,7 +291,7 @@ const Level7 = ({ setCompletedLevels }) => {
 
       {/* Selected card box */}
       <div>
-          <h2 className="text-center text-lg font-bold mt-14">
+          <h2 className="text-slate-50 text-center text-2xl font-bold mt-14">
             Select the Correct Option
           </h2>
         </div>
@@ -302,7 +302,7 @@ const Level7 = ({ setCompletedLevels }) => {
           <h2 className="text-xl text-blue-600 font-bold">
             Time Remaining: {countdown} seconds
           </h2>
-        </div> */}
+        </div> */}text-slate-50
 
         {/* Success Popup for Correct Sequence */}
         {showSuccessPopup && (
@@ -313,14 +313,14 @@ const Level7 = ({ setCompletedLevels }) => {
               </h2>
               <button
                 onClick={() => handleSuccessClose("/level9")} // Navigate to Level 9
-                className="mt-4 bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600"
+                className="mt-4 bg-amber-950 text-white px-4 py-2 rounded-lg "
               >
                 Situation 1: Improving after 30 min
               </button>
 
               <button
                 onClick={() => handleSuccessClose("/level10")} // Navigate to Level 10
-                className="mt-4 bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600"
+                className="mt-4 bg-amber-950 text-white px-4 py-2 rounded-lg "
               >
                 Situation 2: Not improving after 30 min
               </button>

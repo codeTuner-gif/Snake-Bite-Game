@@ -162,18 +162,18 @@ const Level2 = ({ setCompletedLevels }) => {
       {/* Icons on the top-right corner */}
       <div className="absolute top-4 right-4 flex items-center gap-4">
         <div className="flex items-center gap-2 cursor-pointer">
-          <FaClock className="text-amber-950 text-xl sm:text-2xl" />
+          <FaClock className="text-slate-50 text-xl sm:text-2xl" />
 
           {/*<h2 className="text-xl text-blue-600 font-bold">
            {countdown} s
           </h2>*/}
         </div>
         <div className="flex items-center gap-2 cursor-pointer">
-          <FaQuestionCircle className="text-amber-950 text-xl sm:text-2xl" />
-          <span className="text-amber-950 text-sm sm:text-base">Help</span>
+          <FaQuestionCircle className="text-slate-50 text-xl sm:text-2xl" />
+          <span className="text-slate-50 text-sm sm:text-base">Help</span>
         </div>
       </div>
-      <h2 className="text-2xl font-bold text-blue-400 mx-auto">
+      <h2 className="text-2xl font-bold text-slate-50 mx-auto">
         How would you like to manage the patient initially?
       </h2>
 
@@ -201,7 +201,11 @@ const Level2 = ({ setCompletedLevels }) => {
           </div>
         ))}
       </div>
-
+        <div>
+          <h2 className="text-center text-3xl font-bold text-slate-50">
+            Select Correct options
+          </h2>
+        </div>
       <div className="flex flex-wrap justify-center gap-8 mt-4">
         {[
           selectedCards1,
@@ -252,7 +256,7 @@ const Level2 = ({ setCompletedLevels }) => {
             </h2>
             <button
               onClick={() => handleCompleteLevel2("/level3")}
-              className="mt-4 bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600"
+              className="mt-4 bg-amber-950 text-white px-4 py-2 rounded-lg "
             >
               Start specific management
             </button>

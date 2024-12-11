@@ -272,15 +272,15 @@ const Level1 = ({ setCompletedLevels }) => {
       {/* Icons on the top-right corner */}
       <div className="absolute top-4 right-4 flex items-center gap-4">
         <div className="flex items-center gap-2 cursor-pointer">
-          <FaClock className="text-amber-950 text-xl sm:text-2xl" />
+          <FaClock className="text-slate-50 text-xl sm:text-2xl" />
 
           {/*<h2 className="text-xl text-blue-600 font-bold">
            {countdown} s
           </h2>*/}
         </div>
         <div className="flex items-center gap-2 cursor-pointer">
-          <FaQuestionCircle className="text-amber-950 text-xl sm:text-2xl" />
-          <span className="text-amber-950 text-sm sm:text-base">Help</span>
+          <FaQuestionCircle className="text-slate-50 text-xl sm:text-2xl" />
+          <span className="text-slate-50 text-sm sm:text-base">Help</span>
         </div>
       </div>
 
@@ -354,7 +354,7 @@ const Level1 = ({ setCompletedLevels }) => {
               Your choices are correct
             </h2>
             <button
-              className="bg-blue-500 text-white px-4 py-2 sm:px-6 sm:py-3 rounded-md hover:bg-blue-600"
+              className="bg-amber-950 text-white px-4 py-2 sm:px-6 sm:py-3 rounded-md"
               onClick={handleSuccessClose}
             >
               Proceed to the next level
