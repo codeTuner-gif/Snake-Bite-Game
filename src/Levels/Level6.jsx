@@ -331,20 +331,20 @@ const Level6 = ({ setCompletedLevels }) => {
       {/* Icons on the top-right corner */}
       <div className="absolute top-4 right-4 flex items-center gap-4">
         <div className="flex items-center gap-2 cursor-pointer">
-          <FaClock className="text-amber-950 text-xl sm:text-2xl" />
+          <FaClock className="text-slate-50 text-xl sm:text-2xl" />
 
           {/*<h2 className="text-xl text-blue-600 font-bold">
            {countdown} s
           </h2>*/}
         </div>
         <div className="flex items-center gap-2 cursor-pointer">
-          <FaQuestionCircle className="text-amber-950 text-xl sm:text-2xl" />
-          <span className="text-amber-950 text-sm sm:text-base">Help</span>
+          <FaQuestionCircle className="text-slate-50 text-xl sm:text-2xl" />
+          <span className="text-slate-50 text-sm sm:text-base">Help</span>
         </div>
       </div>
       <div className="flex items-center justify-between w-full">
         {/* <h2 className="text-xl font-bold mx-auto mr-54">Choose card from deck</h2> */}
-        <h2 className="text-2xl font-bold text-blue-400 mx-auto mr-50 text-center">
+        <h2 className="text-2xl font-bold text-slate-50 mx-auto mr-50 text-center">
           {/* AVS reaction: */}
           5 mins after starting AVS, patient develops Anaphylactoid reactions.<br />{" "}
           Options available for management:
@@ -368,7 +368,7 @@ const Level6 = ({ setCompletedLevels }) => {
       {/* Selected Boxes */}
       <div className="text-xl w-full h-30">
         <div>
-          <h2 className="text-center text-lg font-bold">
+          <h2 className="text-slate-50 text-center text-2xl font-bold">
             Select Correct options
           </h2>
         </div>
@@ -401,7 +401,7 @@ const Level6 = ({ setCompletedLevels }) => {
             {codeSelection() ? (
               <button
                 onClick={() => handleCompleteLevel6()}
-                className="mt-4 bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600"
+                className="mt-4 bg-amber-950 text-white px-4 py-2 rounded-lg "
               >
                 Situation: Neurological sign
               </button>
@@ -412,7 +412,7 @@ const Level6 = ({ setCompletedLevels }) => {
                     handleCompleteLevel6();
                     navigate("/level11"); // Redirect to Level 11
                   }}
-                  className="mt-4 bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600"
+                  className="mt-4 bg-amber-950 text-white px-4 py-2 rounded-lg "
                 >
                   Situation 1: Initial WBCT result shows clotted
                 </button>
@@ -421,7 +421,7 @@ const Level6 = ({ setCompletedLevels }) => {
                     handleCompleteLevel6();
                     navigate("/level12"); // Redirect to Level 12
                   }}
-                  className="mt-4 bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600"
+                  className="mt-4 bg-amber-950 text-white px-4 py-2 rounded-lg "
                 >
                   Situation 2: Initial WBCT result shows not clotted
                 </button>

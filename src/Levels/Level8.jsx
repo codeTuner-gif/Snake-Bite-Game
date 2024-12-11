@@ -268,20 +268,20 @@ const showNextCard = () => {
       {/* Icons on the top-right corner */}
       <div className="absolute top-4 right-4 flex items-center gap-4">
         <div className="flex items-center gap-2 cursor-pointer">
-          <FaClock className="text-amber-950 text-xl sm:text-2xl" />
+          <FaClock className="text-slate-50 text-xl sm:text-2xl" />
 
           {/*<h2 className="text-xl text-blue-600 font-bold">
            {countdown} s
           </h2>*/}
         </div>
         <div className="flex items-center gap-2 cursor-pointer">
-          <FaQuestionCircle className="text-amber-950 text-xl sm:text-2xl" />
-          <span className="text-amber-950 text-sm sm:text-base">Help</span>
+          <FaQuestionCircle className="text-slate-50 text-xl sm:text-2xl" />
+          <span className="text-slate-50 text-sm sm:text-base">Help</span>
         </div>
       </div>
       <div className="flex items-center justify-between w-full">
         {/* <h2 className="text-xl font-bold mx-auto mr-54">Choose card from deck</h2> */}
-        <h2 className="text-2xl font-bold text-blue-400 mx-auto mr-50 mb-6">
+        <h2 className="text-2xl font-bold text-slate-50 mx-auto mr-50 mb-6">
           Signs of bleeding(Haemotoxic Envenomation):
         </h2>
       </div>
@@ -302,14 +302,14 @@ const showNextCard = () => {
 
       {/* Selected card box */}
       <div>
-          <h2 className="text-center text-lg font-bold mt-14">
+          <h2 className="text-slate-50 text-center text-2xl font-bold mt-14">
             Select the Correct Option
           </h2>
         </div>
       <div className="mt-8 w-60 h-32 border-2 border-blue-500 flex items-center justify-center bg-gray-100 rounded-lg shadow-md text-gray-700">
         <p className="text-md text-center">{selectedCards.text}</p>
       </div>
-        {/* <div className="flex w-full mt-10">
+        {/* <div classNtext-slate-50ame="flex w-full mt-10">
           <h2 className="text-xl text-blue-600 font-bold">
             Time Remaining: {countdown} seconds
           </h2>
@@ -328,7 +328,7 @@ const showNextCard = () => {
                   handleCompleteLevel8();
                   navigate("/level11"); // Redirect to Level 11
                 }}
-                className="mt-4 bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600"
+                className="mt-4 bg-amber-950 text-white px-4 py-2 rounded-lg "
               >
                 Hint: Clotted
               </button>
@@ -337,7 +337,7 @@ const showNextCard = () => {
                   handleCompleteLevel8();
                   navigate("/level12"); // Redirect to Level 12
                 }}
-                className="mt-4 bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600"
+                className="mt-4 bg-amber-950 text-white px-4 py-2 rounded-lg "
               >
                 Hint: Not clotted
               </button>

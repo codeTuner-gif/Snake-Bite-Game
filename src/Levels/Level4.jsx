@@ -310,20 +310,20 @@ const Level4 = ({ setCompletedLevels }) => {
       {/* Icons on the top-right corner */}
       <div className="absolute top-4 right-4 flex items-center gap-4">
         <div className="flex items-center gap-2 cursor-pointer">
-          <FaClock className="text-amber-950 text-xl sm:text-2xl" />
+          <FaClock className="text-slate-50 text-xl sm:text-2xl" />
 
           {/*<h2 className="text-xl text-blue-600 font-bold">
            {countdown} s
           </h2>*/}
         </div>
         <div className="flex items-center gap-2 cursor-pointer">
-          <FaQuestionCircle className="text-amber-950 text-xl sm:text-2xl" />
-          <span className="text-amber-950 text-sm sm:text-base">Help</span>
+          <FaQuestionCircle className="text-slate-50 text-xl sm:text-2xl" />
+          <span className="text-slate-50 text-sm sm:text-base">Help</span>
         </div>
       </div>
       <div className="flex items-center justify-between w-full">
         {/* <h2 className="text-xl font-bold mx-auto mr-54">Choose card from deck</h2> */}
-        <h2 className="text-2xl font-bold text-blue-400 mx-auto mr-50 mb-6">
+        <h2 className="text-2xl font-bold text-slate-50 mx-auto mr-50 mb-6">
           {heading} {/* Render the heading dynamically */}
         </h2>
       </div>
@@ -351,7 +351,7 @@ const Level4 = ({ setCompletedLevels }) => {
       {/* Selected Boxes */}
       <div className="text-xl w-full h-30">
         <div>
-          <h2 className="text-center text-lg font-bold">
+          <h2 className="text-center text-slate-50 text-2xl font-bold">
             Select Correct options
           </h2>
         </div>
@@ -384,7 +384,7 @@ const Level4 = ({ setCompletedLevels }) => {
             {codeSelection && ( // Check if codeSelection is valid
               <button
                 onClick={() => handleCompleteLevel4("/level6")} // Ensure this function navigates correctly
-                className="mt-4 bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600"
+                className="mt-4 bg-amber-950 text-white px-4 py-2 rounded-lg "
               >
                 {/* Hint: Scalp itching/ Hypotension/ Pain abdomen/ Vomiting/
                 Urticaria */}

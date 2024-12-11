@@ -401,19 +401,19 @@ const Level3 = ({ setCompletedLevels }) => {
       {/* Icons on the top-right corner */}
       <div className="absolute top-4 right-4 flex items-center gap-4">
         <div className="flex items-center gap-2 cursor-pointer">
-          <FaClock className="text-amber-950 text-xl sm:text-2xl" />
+          <FaClock className="text-slate-50 text-xl sm:text-2xl" />
 
           {/*<h2 className="text-xl text-blue-600 font-bold">
            {countdown} s
           </h2>*/}
         </div>
         <div className="flex items-center gap-2 cursor-pointer">
-          <FaQuestionCircle className="text-amber-950 text-xl sm:text-2xl" />
-          <span className="text-amber-950 text-sm sm:text-base">Help</span>
+          <FaQuestionCircle className="text-slate-50 text-xl sm:text-2xl" />
+          <span className="text-slate-50 text-sm sm:text-base">Help</span>
         </div>
       </div>
       {/* Tabs for History and Examination */}
-      <p className="text-2xl font-bold text-blue-400 mx-auto text-center">
+      <p className="text-2xl font-bold text-slate-50 mx-auto text-center mt-4">
         Various findings related to Snake bite have been listed below. Select
         atleast one from history & examination considering one type of
         envenomation to go to next level
@@ -457,7 +457,7 @@ const Level3 = ({ setCompletedLevels }) => {
 
       <div className="text-xl w-full h-30">
         <div>
-          <h2 className="text-center text-lg font-bold mt-14">
+          <h2 className="text-center text-slate-50 text-lg font-bold mt-14">
             Select Correct options
           </h2>
         </div>
@@ -509,14 +509,14 @@ const Level3 = ({ setCompletedLevels }) => {
             {codeSelection() ? (
               <button
                 onClick={() => handleCompleteLevel3("/level4")} // Redirect to Level 4
-                className="mt-4 bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600"
+                className="mt-4 bg-amber-950 text-white px-4 py-2 rounded-lg "
               >
                 Proceed to the next level
               </button>
             ) : (
               <button
                 onClick={() => handleCompleteLevel3("/level5")} // Redirect to Level 5
-                className="mt-4 bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600"
+                className="mt-4 bg-amber-950 text-white px-4 py-2 rounded-lg "
               >
                 Proceed to the next level
               </button>
